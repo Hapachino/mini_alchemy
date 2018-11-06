@@ -1,0 +1,56 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 0;
+}
+
+body * {
+  font-size: 1.6rem;
+}
+
+header {
+  height: 20vh;
+  width: 100%;
+  position: relative;
+}
+
+h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+}
+
+aside {
+  height: 80vh;
+  width: 15%;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+}
+
+main {
+  height: 80vh;
+  width: 85%;
+  display: inline-grid;
+  grid-template-columns: repeat(6, auto);
+  align-content: space-evenly;
+  justify-content: space-evenly;
+}
+
+.card {
+  height: 22vh;
+  width: 9vw;
+  background-color: cornflowerblue;
+}
