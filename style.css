@@ -50,7 +50,30 @@ main {
 }
 
 .card {
+  position: relative;
+}
+
+.front, .back {
   height: 22vh;
   width: 11vw;
-  background-color: cornflowerblue;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.front {
+  background-color: green;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+}
+
+.back {
+  background-color: red;
+}
+
+.hidden {
+  visibility: hidden;
 }
