@@ -1,3 +1,8 @@
+$('document').ready(function () {
+  createCards(config.cards);
+  $('.card').click(cardClicked);
+});
+
 const config = {
   cards: 18,
   totalPossibleMatches() {
@@ -11,11 +16,6 @@ const gameState = {
   clicked: 0,
   matchCounter: 0,
 };
-
-$('document').ready(function() {
-  createCards(config.cards);
-  $('.card').click(cardClicked);
-});
 
 function createCards(number) {
   for (let i = 0; i < number; i++) {

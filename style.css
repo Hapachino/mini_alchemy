@@ -51,6 +51,8 @@ main {
 
 .card {
   position: relative;
+  height: 22vh;
+  width: 11vw;
 }
 
 .front, .back {
