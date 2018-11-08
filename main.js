@@ -1,5 +1,5 @@
 const config = {
-  cards: 4,
+  cards: 18,
   totalPossibleMatches() {
     return this.cards / 2;
   }
