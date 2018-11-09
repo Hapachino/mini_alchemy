@@ -26,7 +26,6 @@ const config = {
 
     // tier 3
     'air + energy': 'heat',
-    'air + metal': 'rust',
     'air + pressure': 'wind',
     'earth + pressure': 'stone',
     'dust + fire': 'gunpowder',
@@ -41,7 +40,7 @@ const config = {
 
     // tier 5
     'wall + wall': 'house',
-    'energy + explosion': 'atomic_bomb',
+    'energy + explosion': 'atomic-bomb',
   },
 }
 
