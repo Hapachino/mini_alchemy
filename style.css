@@ -9,8 +9,8 @@
   --background-color: grey;
   --header-height: 13vh;
   --main-width: 90%;
-
-  --font-color: white;
+  /* color */
+  --font-color: black;
 }
 
 *,
@@ -29,7 +29,7 @@ html {
 body {
   font-size: 0;
   background-color: var(--background-color);
-  background: url('lab2.jpg');
+  background: url('images/background/lab.jpg');
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -113,7 +113,7 @@ main {
 }
 
 .front {
-  z-index: -1;
+  z-index: -1; 
   display: flex;
   justify-content: center;
   align-items: center;

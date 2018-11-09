@@ -1,16 +1,17 @@
 $('document').ready(function () {
+  shuffle(config.startingCards);
   createStartingCards(config.startingCards, 'main');
   $('#game-area').on('click', '.card', cardClicked);
   $('.reset').click(reset);
 });
 
 const config = {
-  startingCards: ['air', 'fire', 'earth', 'water'],
+  startingCards: ['air', 'earth', 'fire', 'water'],
   cardBack: 'trans4',
   flipDelay: 1000,
   formulas: {
     // tier 1
-    // air, fire, earth, water
+    // air, earth, fire, water
 
     // tier 2
     'air + air': 'pressure',
@@ -101,15 +102,10 @@ function cardClicked() {
     const firstElement = gameState.firstCardClicked.attr('name');
     const secondElement = gameState.secondCardClicked.attr('name');
     const search = [firstElement, secondElement].sort().join(' + ');
-    const newElement = config.formulas[search];
-    
-    if (!newElement) {
-      console.log('formula doesn\'t exist');
-    } else {
-      const card = createCard(newElement, 'main');
-      card.find('.back').addClass('hidden');
-      delayedHide(card);
-    }
+    const newElement = config.formulas[search] || 'ash';
+    const card = createCard(newElement, 'main');
+    card.find('.back').addClass('hidden');
+    delayedHide(card);
 
     gameStats.attempts++;
     delayedHideAndReset();
@@ -149,10 +145,18 @@ function reset() {
   displayStats();
 }
 
+function shuffle(array) {
+  for (let i = array.length; i--; i > 0) {
+    const j = Math.floor(Math.random() * i);
+
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+
+  return array;
+}
+
 /*
 TODO:
-randomize initial cards
-junk formula
 show goal card
 win when goal card produced
 win screen
@@ -160,6 +164,7 @@ if max card count reached before win, lose
 lose screen
 redo reset button to actually reset
 redesign reset button
+make color darker for images
 change cursor to wand?
 different card backs
 background images alternative
