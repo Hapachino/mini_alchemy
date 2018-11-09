@@ -1,3 +1,8 @@
+:root {
+  --starting-cards-size: 7vw;
+  --background-color: grey;
+}
+
 *,
 *::before,
 *::after {
@@ -13,6 +18,7 @@ html {
 
 body {
   font-size: 0;
+  background-color: var(--background-color);
 }
 
 body * {
@@ -20,7 +26,7 @@ body * {
 }
 
 header {
-  height: 20vh;
+  height: 15vh;
   width: 100%;
   position: relative;
 }
@@ -39,15 +45,15 @@ h1 {
 }
 
 aside {
-  height: 80vh;
-  width: 15%;
+  height: 85vh;
+  width: 10%;
   vertical-align: top;
   display: inline-flex;
   justify-content: center;
   align-items: center;
 }
 
-.statsContainer {
+.stats-container {
   height: 100%;
   width: 90%;
   text-align: center;
@@ -57,29 +63,41 @@ aside {
   align-items: center;
 }
 
-.statsContainer * {
-  font-size: 1.75vw;
+.stats-container * {
+  font-size: 1.2vw;
   text-transform: uppercase;
 }
 
-.statsContainer .value {
+.stats-container .value {
   position: relative;
-  top: 1.75vw;
+  top: 1.2vw;
 }
 
 main {
-  height: 80vh;
-  width: 85%;
-  display: inline-grid;
+  height: 85vh;
+  width: 90%;
+  display: inline-block;
+}
+
+#starting-cards-area {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  justify-content: space-evenly;
+}
+
+#created-cards-area {
+  margin: 2vw;
+  display: grid;
   grid-template-columns: repeat(6, auto);
   align-content: space-evenly;
   justify-content: space-evenly;
+  grid-gap: 1vw;
 }
 
 .card {
   position: relative;
-  height: 11vw;
-  width: 10vw;
+  height: var(--starting-cards-size);
+  width: var(--starting-cards-size);
 }
 
 .front, .back {
@@ -91,16 +109,32 @@ main {
 }
 
 .front {
-  background-color: green;
   z-index: -1;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 5vmin;
+  background-color: white;
+  border: 2px black solid;
+}
+
+.front-image {
+  background-size: cover;
+  height: 80%;
+  width: 80%;
 }
 
 .back {
-  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  border: 2px black solid;
+}
+
+.back-image {
+  background-size: cover;
+  height: 90%;
+  width: 90%;
 }
 
 .hidden {
