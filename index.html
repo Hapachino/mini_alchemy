@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="jquery-3.3.1.min.js"></script>
   <script src="main.js"></script>
@@ -8,28 +9,30 @@
 
 <body>
   <header>
-    <h1>Game Title (TBD)</h1>
+    <h1>Game Title</h1>
     <a href="#" class="settings">settings</a>
     <a href="#" class="about">about</a>
   </header>
 
   <aside>
-    <div class="games-played">
-      <div class="label">games played</div>
-      <div class="value"></div>
+    <div class="statsContainer">
+      <div class="games-played">
+        <div class="label">games played</div>
+        <div class="value">0</div>
+      </div>
+      
+      <div class="attempts">
+        <div class="label">attempts</div>
+        <div class="value">0</div>
+      </div>
+      
+      <div class="accuracy">
+        <div class="label">accuracy</div>
+        <div class="value">N/A</div>
+      </div>
+      
+      <button class="reset">reset</button>
     </div>
-    
-    <div class="attempts">
-      <div class="label">attempts</div>
-      <div class="value"></div>
-    </div>
-
-    <div class="accuracy">
-      <div class="label">accuracy</div>
-      <div class="value"></div>
-    </div>
-
-    <button class="reset">reset game</button>
   </aside>
 
   <main id="game-area"></main>
