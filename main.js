@@ -157,14 +157,17 @@ function reset() {
 TODO:
 change h1 style
 make stats more visible
-different card backs
+show goal card
+win when goal card produced
+win screen
 redo reset button to actually reset
 redesign reset button
+different card backs
+background images alternative
 new element animation
 flip card animation
-show goal card
-background images alternative
 if max card count reached before win, lose
+lose screen
 no such formula notification?
 combine card animation
 combine card sound
