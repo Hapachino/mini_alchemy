@@ -1,5 +1,5 @@
 $('document').ready(function () {
-  createStartingCards(config.startingCards, '#starting-cards-area');
+  createStartingCards(config.startingCards, 'main');
   $('#game-area').on('click', '.card', cardClicked);
   $('.reset').click(reset);
 });
@@ -112,16 +112,16 @@ function cardClicked() {
     if (!newElement) {
       console.log('formula doesn\'t exist');
     } else {
-      createCard(newElement, '#created-cards-area');
+      createCard(newElement, 'main');
     }
 
     gameStats.attempts++;
-    flipToCardBack();
+    hideBothCards();
     displayStats();
   }
 }
 
-function flipToCardBack() {
+function hideBothCards() {
   setTimeout(function() {
     gameState.firstCardClicked.find('.back').removeClass('hidden');
     gameState.secondCardClicked.find('.back').removeClass('hidden');
@@ -150,12 +150,17 @@ function reset() {
 /*
 TODO:
 new cards layout
+card border radius
 show new element before flipping back
+change h1 style
+background color
+redo reset button
 flip card animation
 show goal card
+no such formula notification?
 combine card animation
 combine card sound
-settings 
+settings - difficulty level
 about
 story line
 intro

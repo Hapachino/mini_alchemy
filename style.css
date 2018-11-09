@@ -1,5 +1,5 @@
 :root {
-  --starting-cards-size: 7vw;
+  --cards-size: 7vw;
   --background-color: grey;
 }
 
@@ -42,6 +42,7 @@ h1 {
   transform: translate(-50%, -50%);
   display: inline-block;
   font-size: 6vmin;
+  text-transform: uppercase;
 }
 
 aside {
@@ -76,28 +77,18 @@ aside {
 main {
   height: 85vh;
   width: 90%;
-  display: inline-block;
-}
-
-#starting-cards-area {
-  display: grid;
-  grid-template-columns: repeat(4, auto);
-  justify-content: space-evenly;
-}
-
-#created-cards-area {
-  margin: 2vw;
-  display: grid;
-  grid-template-columns: repeat(6, auto);
-  align-content: space-evenly;
-  justify-content: space-evenly;
+  padding: 2vw;
+  display: inline-grid;
+  grid-template-columns: repeat(8, 1fr);
+  align-content: start;
+  justify-content: start;
   grid-gap: 1vw;
 }
 
 .card {
   position: relative;
-  height: var(--starting-cards-size);
-  width: var(--starting-cards-size);
+  height: var(--cards-size);
+  width: var(--cards-size);
 }
 
 .front, .back {
