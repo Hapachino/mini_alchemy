@@ -1,5 +1,10 @@
 :root {
+  /* cards */
   --cards-size: 7.5vw;
+  --card-back-background: url('images/cardback/woodback.png');
+  --card-back-image: url('images/cardback/alchemy.png');
+  --card-border: .4rem black solid;
+  /* layout */
   --card-columns: 8;
   --background-color: grey;
   --header-height: 13vh;
@@ -22,6 +27,9 @@ html {
 body {
   font-size: 0;
   background-color: var(--background-color);
+  background: url('lab2.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 body * {
@@ -105,7 +113,7 @@ main {
   justify-content: center;
   align-items: center;
   background-color: white;
-  border: .5rem black solid;
+  border: var(--card-border);
 }
 
 .front-image {
@@ -118,14 +126,15 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: black;
-  border: 2px black solid;
+  background: var(--card-back-background);
+  border: var(--card-border);
 }
 
 .back-image {
   background-size: cover;
   height: 95%;
   width: 95%;
+  background-image: var(--card-back-image);
 }
 
 .hidden {

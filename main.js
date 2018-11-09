@@ -6,7 +6,7 @@ $('document').ready(function () {
 
 const config = {
   startingCards: ['air', 'fire', 'earth', 'water'],
-  cardBack: 'transmutation',
+  cardBack: 'trans4',
   flipDelay: 1500,
   formulas: {
     // tier 1
@@ -69,12 +69,7 @@ function createCard(element, parent) {
   front.append(frontImage);
 
   const back = $('<div>').addClass('back');
-  const backImage = $('<div>', {
-    class: 'back-image',
-    css: {
-      backgroundImage: `url(images/${config.cardBack}.png)`,
-    }
-  });
+  const backImage = $('<div>').addClass('back-image');
   back.append(backImage);
 
   card.append(front, back);
