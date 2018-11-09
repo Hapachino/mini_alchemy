@@ -9,6 +9,8 @@
   --background-color: grey;
   --header-height: 13vh;
   --main-width: 90%;
+
+  --font-color: white;
 }
 
 *,
@@ -17,7 +19,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Roboto';
+  font-family: 'Marcellus SC'; 
+  /* Marcellus SC, lemon , vast shadow*/
 }
 
 html {
@@ -52,8 +55,9 @@ h1 {
   left: 50%;
   transform: translate(-50%, -50%);
   display: inline-block;
-  font-size: 6vmin;
+  font-size: 4vw;
   text-transform: uppercase;
+  color: var(--font-color);
 }
 
 aside {
@@ -66,11 +70,14 @@ aside {
   align-items: center;
   text-align: center;
   display: inline-flex;
+  padding: .5vw;
 }
 
 aside * {
   font-size: 1.2vw;
   text-transform: uppercase;
+  /* font-family: 'Lemon'; */
+  color: var(--font-color);
 }
 
 aside .value {

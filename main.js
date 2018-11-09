@@ -155,7 +155,7 @@ function reset() {
 
 /*
 TODO:
-change h1 style
+add linear gradient to h1
 make stats more visible
 show goal card
 win when goal card produced
