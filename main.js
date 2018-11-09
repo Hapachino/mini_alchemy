@@ -7,7 +7,7 @@ $('document').ready(function () {
 const config = {
   startingCards: ['air', 'fire', 'earth', 'water'],
   cardBack: 'transmutation',
-  flipDelay: 1000,
+  flipDelay: 1500,
   formulas: {
     // tier 1
     // air, fire, earth, water
@@ -80,6 +80,8 @@ function createCard(element, parent) {
 
   card.append(front, back);
   $(parent).append(card);
+
+  return card;
 }
 
 function createStartingCards(cards, parent) {
@@ -112,17 +114,27 @@ function cardClicked() {
     if (!newElement) {
       console.log('formula doesn\'t exist');
     } else {
-      createCard(newElement, 'main');
+      // checking if element exists already
+      // const currentCards = [...$('.card')].map(card => $(card).attr('name'));
+      const card = createCard(newElement, 'main');
+      card.find('.back').addClass('hidden');
+      delayedHide(card);
     }
 
     gameStats.attempts++;
-    hideBothCards();
+    delayedHideAndReset();
     displayStats();
   }
 }
 
-function hideBothCards() {
-  setTimeout(function() {
+function delayedHide(card) {
+  setTimeout(() => {
+    card.find('.back').removeClass('hidden');
+  }, config.flipDelay);
+}
+
+function delayedHideAndReset() {
+  setTimeout(() => {
     gameState.firstCardClicked.find('.back').removeClass('hidden');
     gameState.secondCardClicked.find('.back').removeClass('hidden');
 
@@ -149,14 +161,13 @@ function reset() {
 
 /*
 TODO:
-new cards layout
-card border radius
-show new element before flipping back
 change h1 style
 background color
-redo reset button
+redo reset button to actually reset
+redesign reset button
 flip card animation
 show goal card
+if max card count reached before win, lose
 no such formula notification?
 combine card animation
 combine card sound
@@ -164,4 +175,7 @@ settings - difficulty level
 about
 story line
 intro
+
+IDEAS:
+only create new element if doesn't exist
 */

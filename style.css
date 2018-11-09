@@ -1,6 +1,9 @@
 :root {
-  --cards-size: 7vw;
+  --cards-size: 7.5vw;
+  --card-columns: 8;
   --background-color: grey;
+  --header-height: 13vh;
+  --main-width: 90%;
 }
 
 *,
@@ -26,7 +29,7 @@ body * {
 }
 
 header {
-  height: 15vh;
+  height: var(--header-height);
   width: 100%;
   position: relative;
 }
@@ -46,49 +49,46 @@ h1 {
 }
 
 aside {
-  height: 85vh;
-  width: 10%;
+  height: calc(100vh - var(--header-height));
+  width: calc(100% - var(--main-width));
   vertical-align: top;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.stats-container {
-  height: 100%;
-  width: 90%;
-  text-align: center;
   display: inline-flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  text-align: center;
+  display: inline-flex;
 }
 
-.stats-container * {
+aside * {
   font-size: 1.2vw;
   text-transform: uppercase;
 }
 
-.stats-container .value {
+aside .value {
   position: relative;
   top: 1.2vw;
 }
 
 main {
-  height: 85vh;
-  width: 90%;
+  height: calc(100vh - var(--header-height));
+  width: var(--main-width);
   padding: 2vw;
   display: inline-grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(var(--card-columns), 1fr);
   align-content: start;
   justify-content: start;
-  grid-gap: 1vw;
+  grid-gap: .5vw;
 }
 
 .card {
   position: relative;
   height: var(--cards-size);
   width: var(--cards-size);
+}
+
+.card, .front, .back {
+  border-radius: 1rem;
 }
 
 .front, .back {
@@ -105,13 +105,13 @@ main {
   justify-content: center;
   align-items: center;
   background-color: white;
-  border: 2px black solid;
+  border: .5rem black solid;
 }
 
 .front-image {
   background-size: cover;
-  height: 80%;
-  width: 80%;
+  height: 90%;
+  width: 90%;
 }
 
 .back {
@@ -124,8 +124,8 @@ main {
 
 .back-image {
   background-size: cover;
-  height: 90%;
-  width: 90%;
+  height: 95%;
+  width: 95%;
 }
 
 .hidden {
