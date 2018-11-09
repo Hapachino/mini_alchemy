@@ -7,7 +7,7 @@ $('document').ready(function () {
 const config = {
   startingCards: ['air', 'fire', 'earth', 'water'],
   cardBack: 'trans4',
-  flipDelay: 1500,
+  flipDelay: 1000,
   formulas: {
     // tier 1
     // air, fire, earth, water
@@ -156,19 +156,23 @@ function reset() {
 /*
 TODO:
 change h1 style
-background color
+make stats more visible
+different card backs
 redo reset button to actually reset
 redesign reset button
+new element animation
 flip card animation
 show goal card
+background images alternative
 if max card count reached before win, lose
 no such formula notification?
 combine card animation
 combine card sound
-settings - difficulty level
 about
 story line
 intro
+settings - difficulty level
+
 
 IDEAS:
 only create new element if doesn't exist

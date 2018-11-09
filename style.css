@@ -3,7 +3,7 @@
   --cards-size: 7.5vw;
   --card-back-background: url('images/cardback/woodback.png');
   --card-back-image: url('images/cardback/alchemy.png');
-  --card-border: .4rem black solid;
+  --card-border: .3rem black solid;
   /* layout */
   --card-columns: 8;
   --background-color: grey;
