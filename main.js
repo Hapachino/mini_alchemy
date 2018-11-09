@@ -85,7 +85,6 @@ function createStartingCards(cards, parent) {
 }
 
 function cardClicked() {
-  // check if two cards have already been flipped
   if (gameState.clicked === 2) {
     return;
   } else {
@@ -104,12 +103,9 @@ function cardClicked() {
     const search = [firstElement, secondElement].sort().join(' + ');
     const newElement = config.formulas[search];
     
-    // if no such formula
     if (!newElement) {
       console.log('formula doesn\'t exist');
     } else {
-      // checking if element exists already
-      // const currentCards = [...$('.card')].map(card => $(card).attr('name'));
       const card = createCard(newElement, 'main');
       card.find('.back').addClass('hidden');
       delayedHide(card);
@@ -155,28 +151,34 @@ function reset() {
 
 /*
 TODO:
-add linear gradient to h1
-make stats more visible
+randomize initial cards
+junk formula
 show goal card
 win when goal card produced
 win screen
-redo reset button to actually reset
-redesign reset button
-different card backs
-background images alternative
-new element animation
-flip card animation
 if max card count reached before win, lose
 lose screen
-no such formula notification?
+redo reset button to actually reset
+redesign reset button
+change cursor to wand?
+different card backs
+background images alternative
+stats visibility and styling
+new stats - repeated elements, attempts, failed elements, total new elements created, new element creation rate
+h1 styling
+new element animation
+flip card animation
 combine card animation
-combine card sound
+new element found animation
 about
 story line
 intro
+combine card sound
 settings - difficulty level
+local storage
+media query
 
 
 IDEAS:
-only create new element if doesn't exist
+only create new element if not already created
 */
