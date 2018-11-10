@@ -1,13 +1,15 @@
 :root {
   /* cards */
-  --cards-size: 7.5vw;
+  /* --card-size: calc((100vh - var(--header-height) - (var(--card-rows) - 1) * var(--grid-gap)) / var(--card-rows)); */
   --card-back-background: url('images/cardback/wood.png');
   --card-front-background: url('images/cardback/paper.png');
   --card-back-image: url('images/cardback/alchemy.png');
   --card-border: .3rem black solid;
   /* layout */
   --background-image: url('images/background/paper.jpg');
-  --card-columns: 8;
+  --card-columns: 5;
+  --card-rows: 5;
+  --grid-gap: 4vh;
   --background-color: grey;
   --header-height: 13vh;
   --main-width: 85%;
@@ -85,11 +87,6 @@ aside * {
   justify-content: space-around;
 }
 
-/* aside .value {
-  position: relative;
-  top: 1vw;
-} */
-
 main {
   height: calc(100vh - var(--header-height));
   width: var(--main-width);
@@ -103,8 +100,10 @@ main {
 
 .card {
   position: relative;
-  height: var(--cards-size);
-  width: var(--cards-size);
+  /* height: var(--cards-size);
+  width: var(--cards-size); */
+  height: calc((100vh - var(--header-height) - (var(--card-rows) - 1) * var(--grid-gap)) / var(--card-rows));
+  width: calc((100vh - var(--header-height) - (var(--card-rows) - 1) * var(--grid-gap)) / var(--card-rows));
 }
 
 .card, .front, .back {
