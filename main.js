@@ -65,6 +65,7 @@ function init() {
   gameState.targetElement = randomObjectValue(config.formulas);
   // update modal image and text with target element
   updateModal(gameState.targetElement);
+  showModal();
   delayedHideModal();
   $('.new-game').click(reset);
   displayStats();
@@ -254,23 +255,21 @@ TODO:
 win screen
 redesign reset button
 side area redesign
-new element animation
-flip card animation
 change cursor to wand?
+new element discovered animation
+flip card animation
 modal animation
-different card backs
-background images alternative
-keyframes for sidebar
-h1 styling
 combine card animation
-new element found animation
+background image
+h1 styling
+more cards
+keyframes for sidebar
 about
+settings - difficulty, always reveal
 story line
-intro
-combine card sound
-settings - difficulty level
-local storage
 media query
+local storage - # of elements discovered
+sound effects - combine, new, oops, win, lose
 
 
 IDEAS:
