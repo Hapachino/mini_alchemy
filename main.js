@@ -1,7 +1,7 @@
 $('document').ready(function () {
   shuffle(config.startingCards);
   createStartingCards(config.startingCards, 'main');
-  $('#game-area').on('click', '.card', cardClicked);
+  addCardClickHandlers();
   // get random target element (win condition)
   gameState.targetElement = randomObjectValue(config.formulas);
   // update modal image and text with target element
@@ -47,7 +47,7 @@ const config = {
 
     // tier 5
     'wall + wall': 'house',
-    'energy + explosion': 'atomic bomb',
+    'energy + explosion': 'atomic-bomb',
   },
 }
 
@@ -118,6 +118,7 @@ function cardClicked() {
       showModal();
       if (newElement === gameState.targetElement) {
         gameStats.gamesWon++;
+        removeCardClickHandlers();
       } else {
         delayedHideModal(config.flipDelay);
       }
@@ -134,9 +135,10 @@ function cardClicked() {
     delayedHideAndResetCards();
 
     const totalCards = $('.card').length;
-    debugger;
-    // if max cards reached
-    if (totalCards === config.totalCards) {
+
+    // if max cards reached and not won, game over
+    if (totalCards === config.totalCards && newElement !== gameState.targetElement) {
+      removeCardClickHandlers();
       updateModal('game-over');
       showModal();
     }
@@ -144,6 +146,14 @@ function cardClicked() {
     gameStats.attempts++;
     displayStats();
   }
+}
+
+function addCardClickHandlers() {
+  $('#game-area').on('click', '.card', cardClicked);
+}
+
+function removeCardClickHandlers() {
+  $('#game-area').off('click', '.card', cardClicked);
 }
 
 function delayedHide(card) {
@@ -219,23 +229,18 @@ function showModal() {
 
 /*
 TODO:
-if max card count reached before win, lose
-side area redesign
-rip svg from site
 win screen
+side area redesign
 new element animation
-play again button
-lose screen
+play again button instead of reset
 redo reset button to actually reset
 redesign reset button
-make color darker for images
 change cursor to wand?
 modal animation
 different card backs
 background images alternative
 stats visibility and styling
-keyframes for h1 and sidebar
-new stats - total new elements 
+keyframes for sidebar
 h1 styling
 new element animation
 flip card animation
