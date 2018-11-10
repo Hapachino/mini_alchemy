@@ -2,13 +2,19 @@ $('document').ready(function () {
   shuffle(config.startingCards);
   createStartingCards(config.startingCards, 'main');
   $('#game-area').on('click', '.card', cardClicked);
+  // get random target element (win condition)
+  gameState.targetElement = randomObjectValue(config.formulas);
+  // update modal image and text with target element
+  updateModal(gameState.targetElement);
+  delayedHideModal();
   $('.reset').click(reset);
 });
 
 const config = {
   startingCards: ['air', 'earth', 'fire', 'water'],
-  cardBack: 'trans4',
+  cardBack: 'images/cardback/alchemy',
   flipDelay: 1000,
+  modalDelay: 1000,
   formulas: {
     // tier 1
     // air, earth, fire, water
@@ -46,15 +52,17 @@ const config = {
 }
 
 const gameState = {
+  targetElement: null,
   firstCardClicked: null,
   secondCardClicked: null,
   clicked: 0,
 };
 
 const gameStats = {
-  matches: 0,
-  attempts: 0,
   gamesPlayed: 0,
+  gamesWon: 0,
+  attempts: 0,
+  failures: 0,
 }
 
 function createCard(element, parent) {
@@ -103,12 +111,29 @@ function cardClicked() {
     const secondElement = gameState.secondCardClicked.attr('name');
     const search = [firstElement, secondElement].sort().join(' + ');
     const newElement = config.formulas[search] || 'ash';
-    const card = createCard(newElement, 'main');
-    card.find('.back').addClass('hidden');
-    delayedHide(card);
+
+    if (newElement === gameState.targetElement) {
+      gameStats.gamesWon++;
+      showModal();
+    } else {
+      // if first time creating this element, display modal
+      if ($(`[name=${newElement}]`).length === 0) {
+        updateModal(newElement);
+        showModal();
+        delayedHideModal(config.flipDelay);
+      }
+
+      if ($(newElement === 'ash')) {
+        gameStats.failures++;
+      }
+
+      const card = createCard(newElement, 'main');
+      card.find('.back').addClass('hidden');
+      delayedHide(card);
+      delayedHideAndResetCards();
+    }
 
     gameStats.attempts++;
-    delayedHideAndReset();
     displayStats();
   }
 }
@@ -119,7 +144,7 @@ function delayedHide(card) {
   }, config.flipDelay);
 }
 
-function delayedHideAndReset() {
+function delayedHideAndResetCards() {
   setTimeout(() => {
     gameState.firstCardClicked.find('.back').removeClass('hidden');
     gameState.secondCardClicked.find('.back').removeClass('hidden');
@@ -131,7 +156,17 @@ function delayedHideAndReset() {
 
 function displayStats() {
   $('.games-played .value').text(gameStats.gamesPlayed);
+  $('.games-won .value').text(gameStats.gamesWon);
   $('.attempts .value').text(gameStats.attempts);
+  $('.failures .value').text(gameStats.failures);
+}
+
+function randomObjectValue(obj) {
+  const keys = Object.keys(obj);
+  const randomIndex = Math.floor(Math.random() * keys.length);
+  const randomKey = keys[randomIndex];
+
+  return obj[randomKey];
 }
 
 function resetStats() {
@@ -155,17 +190,47 @@ function shuffle(array) {
   return array;
 }
 
+function updateModal(element) {
+  $('.modal-image').css('background-image', `url(images/${element}.png)`);
+
+  let text;
+  
+  if (element === 'ash') {
+    text = 'Oops...';
+  } else {
+  // remove hyphens and join with space
+    text = element.split('-').join(' ')
+  }
+
+  $('.modal-text').text(text);
+}
+
+function delayedHideModal(ms) {
+  const delay = ms || config.modalDelay;
+
+  setTimeout(() => {
+    $('.modal').css('display', 'none');
+  }, delay)
+}
+
+function showModal() {
+  $('.modal').css('display', 'flex');
+}
+
 /*
 TODO:
-show goal card
-win when goal card produced
+failed element counter
+failed element explanation
+new element animation
 win screen
+play again button
 if max card count reached before win, lose
 lose screen
 redo reset button to actually reset
 redesign reset button
 make color darker for images
 change cursor to wand?
+modal animation
 different card backs
 background images alternative
 stats visibility and styling

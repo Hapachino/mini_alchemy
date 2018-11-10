@@ -11,6 +11,8 @@
   --main-width: 90%;
   /* color */
   --font-color: black;
+  /* modal */
+  --modal-border: .5rem black solid;
 }
 
 *,
@@ -143,5 +145,35 @@ main {
 }
 
 .hidden {
-  visibility: hidden;
+  display: none;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 20vw;
+  width: 15vw;
+  background-color: white;
+  border: var(--modal-border);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.modal-image {
+  width: 10vw;
+  height: 10vw;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.modal-text {
+  height: 5vw;
+  width: 100%;
+  text-align: center;
+  font-size: 2.5vw;
 }
