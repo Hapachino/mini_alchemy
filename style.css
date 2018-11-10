@@ -1,15 +1,17 @@
 :root {
   /* cards */
   --cards-size: 7.5vw;
-  --card-back-background: url('images/cardback/woodback.png');
+  --card-back-background: url('images/cardback/wood.png');
+  --card-front-background: url('images/cardback/paper.png');
   --card-back-image: url('images/cardback/alchemy.png');
   --card-border: .3rem black solid;
   /* layout */
+  --background-image: url('images/background/paper.jpg');
   --card-columns: 8;
   --background-color: grey;
   --header-height: 13vh;
   --main-width: 90%;
-  /* color */
+  /* color */ 
   --font-color: black;
   /* modal */
   --modal-border: .5rem black solid;
@@ -30,8 +32,7 @@ html {
 
 body {
   font-size: 0;
-  background-color: var(--background-color);
-  background: url('images/background/lab.jpg');
+  background-color: white;
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -119,7 +120,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background: var(--card-front-background);
   border: var(--card-border);
 }
 
@@ -155,7 +156,7 @@ main {
   transform: translate(-50%, -50%);
   height: 20vw;
   width: 15vw;
-  background-color: white;
+  background: var(--card-front-background);
   border: var(--modal-border);
   border-radius: 1rem;
   display: flex;
