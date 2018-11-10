@@ -1,18 +1,10 @@
 $('document').ready(function () {
-  shuffle(config.startingCards);
-  createStartingCards(config.startingCards, 'main');
-  addCardClickHandlers();
-  // get random target element (win condition)
-  gameState.targetElement = randomObjectValue(config.formulas);
-  // update modal image and text with target element
-  updateModal(gameState.targetElement);
-  delayedHideModal();
-  $('.reset').click(reset);
+  init();
 });
 
 const config = {
   startingCards: ['air', 'earth', 'fire', 'water'],
-  totalCards: 6,
+  totalCards: 8 * 5,
   flipDelay: 1000,
   modalDelay: 1000,
   formulas: {
@@ -65,6 +57,25 @@ const gameStats = {
   oops: 0,
 }
 
+function init() {
+  shuffle(config.startingCards);
+  createStartingCards(config.startingCards, 'main');
+  addCardClickHandlers();
+  // get random target element (win condition)
+  gameState.targetElement = randomObjectValue(config.formulas);
+  // update modal image and text with target element
+  updateModal(gameState.targetElement);
+  delayedHideModal();
+  $('.new-game').click(reset);
+  displayStats();
+}
+
+function unInit() {
+  $('#game-area').html('');
+  removeCardClickHandlers();
+  removeResetHandler();
+}
+
 function createCard(element, parent) {
   const card = $('<div>').addClass('card').attr('name', element);
 
@@ -85,6 +96,14 @@ function createCard(element, parent) {
   $(parent).append(card);
 
   return card;
+}
+
+function addResetHandler() {
+  $('.new-game').click(reset);
+}
+
+function removeResetHandler() {
+  $('.new-game').off('click');
 }
 
 function createStartingCards(cards, parent) {
@@ -124,13 +143,13 @@ function cardClicked() {
     } else if ($(`[name=${newElement}]`).length === 0) {
       updateModal(newElement);
       showModal();
-    }
-
-    if (targetElementCreated) {
-      gameStats.gamesWon++;
-      removeCardClickHandlers();
-    } else {
-      delayedHideModal();
+      
+      if (targetElementCreated) {
+        gameStats.gamesWon++;
+        removeCardClickHandlers();
+      } else {
+        delayedHideModal();
+      }
     }
 
     // if element formula is non-existent
@@ -189,12 +208,14 @@ function randomObjectValue(obj) {
 }
 
 function resetStats() {
-  gameStats.attempts = 0;
-  displayStats();
+  gameStats.attempts = gameStats.oops = 0;
 }
 
 function reset() {
+  debugger;
   gameStats.gamesPlayed++;
+  unInit();
+  init();
   resetStats();
   displayStats();
 }
@@ -230,22 +251,17 @@ function showModal() {
 
 /*
 TODO:
-fix conditionals for win, lose, new element
 win screen
+redesign reset button
 side area redesign
 new element animation
-play again button instead of reset
-redo reset button to actually reset
-redesign reset button
+flip card animation
 change cursor to wand?
 modal animation
 different card backs
 background images alternative
-stats visibility and styling
 keyframes for sidebar
 h1 styling
-new element animation
-flip card animation
 combine card animation
 new element found animation
 about

@@ -10,7 +10,7 @@
   --card-columns: 8;
   --background-color: grey;
   --header-height: 13vh;
-  --main-width: 90%;
+  --main-width: 85%;
   /* color */ 
   --font-color: black;
   /* modal */
@@ -76,15 +76,19 @@ aside {
 }
 
 aside * {
-  font-size: 1.2vw;
+  height: 10vh;
+  font-size: 1.3vw;
   text-transform: uppercase;
   color: var(--font-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
-aside .value {
+/* aside .value {
   position: relative;
-  top: 1.2vw;
-}
+  top: 1vw;
+} */
 
 main {
   height: calc(100vh - var(--header-height));
@@ -176,5 +180,6 @@ main {
   height: 5vw;
   width: 100%;
   text-align: center;
-  font-size: 2.5vw;
+  font-size: 2vw;
+  text-transform: uppercase;
 }
