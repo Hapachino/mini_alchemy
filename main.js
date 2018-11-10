@@ -5,8 +5,8 @@ $('document').ready(function () {
 const config = {
   startingCards: ['air', 'earth', 'fire', 'water'],
   totalCards: 8 * 5,
-  flipDelay: 1000,
-  modalDelay: 1000,
+  flipDelay: 1,
+  modalDelay: 1,
   formulas: {
     // tier 1
     // air, earth, fire, water

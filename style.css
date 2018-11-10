@@ -1,18 +1,17 @@
 :root {
+    /* layout */
+  --background-image: url('images/background/paper.jpg');
+  --background-color: grey;
+  --header-height: 13vh;
+  --main-width: 85%;
   /* cards */
-  /* --card-size: calc((100vh - var(--header-height) - (var(--card-rows) - 1) * var(--grid-gap)) / var(--card-rows)); */
+  --card-columns: 9;
+  --card-rows: 5;
+  --row-gap: 4vh;
   --card-back-background: url('images/cardback/wood.png');
   --card-front-background: url('images/cardback/paper.png');
   --card-back-image: url('images/cardback/alchemy.png');
   --card-border: .3rem black solid;
-  /* layout */
-  --background-image: url('images/background/paper.jpg');
-  --card-columns: 5;
-  --card-rows: 5;
-  --grid-gap: 4vh;
-  --background-color: grey;
-  --header-height: 13vh;
-  --main-width: 85%;
   /* color */ 
   --font-color: black;
   /* modal */
@@ -95,15 +94,15 @@ main {
   grid-template-columns: repeat(var(--card-columns), 1fr);
   align-content: start;
   justify-content: start;
-  grid-gap: .5vw;
+  row-gap: var(--row-gap);
 }
 
 .card {
   position: relative;
   /* height: var(--cards-size);
   width: var(--cards-size); */
-  height: calc((100vh - var(--header-height) - (var(--card-rows) - 1) * var(--grid-gap)) / var(--card-rows));
-  width: calc((100vh - var(--header-height) - (var(--card-rows) - 1) * var(--grid-gap)) / var(--card-rows));
+  height: calc((100vh - var(--header-height) - (var(--card-rows) - 1) * var(--row-gap)) / var(--card-rows)); 
+  width: calc((100vh - var(--header-height) - (var(--card-rows) - 1) * var(--row-gap)) / var(--card-rows));
 }
 
 .card, .front, .back {
