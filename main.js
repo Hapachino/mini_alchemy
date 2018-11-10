@@ -112,16 +112,25 @@ function cardClicked() {
     const search = [firstElement, secondElement].sort().join(' + ');
     const newElement = config.formulas[search] || 'ash';
 
-    // if first time creating this element, display modal
-    if ($(`[name=${newElement}]`).length === 0) {
+    const totalCardsReached = $('.card').length === config.totalCards;
+    const targetElementCreated = newElement === gameState.targetElement;
+
+    // if max cards reached and not won
+    if (totalCardsReached && !targetElementCreated) {
+      removeCardClickHandlers();
+      updateModal('game-over');
+      showModal();
+    // if first time creating this element
+    } else if ($(`[name=${newElement}]`).length === 0) {
       updateModal(newElement);
       showModal();
-      if (newElement === gameState.targetElement) {
-        gameStats.gamesWon++;
-        removeCardClickHandlers();
-      } else {
-        delayedHideModal(config.flipDelay);
-      }
+    }
+
+    if (targetElementCreated) {
+      gameStats.gamesWon++;
+      removeCardClickHandlers();
+    } else {
+      delayedHideModal();
     }
 
     // if element formula is non-existent
@@ -129,20 +138,12 @@ function cardClicked() {
       gameStats.oops++;
     }
 
+    // create card and delay hide
     const card = createCard(newElement, 'main');
     card.find('.back').addClass('hidden');
     delayedHide(card);
     delayedHideAndResetCards();
-
-    const totalCards = $('.card').length;
-
-    // if max cards reached and not won, game over
-    if (totalCards === config.totalCards && newElement !== gameState.targetElement) {
-      removeCardClickHandlers();
-      updateModal('game-over');
-      showModal();
-    }
-      
+    
     gameStats.attempts++;
     displayStats();
   }
@@ -229,6 +230,7 @@ function showModal() {
 
 /*
 TODO:
+fix conditionals for win, lose, new element
 win screen
 side area redesign
 new element animation
