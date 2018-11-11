@@ -22,6 +22,8 @@
   --card-shadow: .5rem .5rem 1rem 0 rgba(0, 0, 0, 0.75);
   --new-card-shadow: 0rem 0rem 1rem .5rem rgba(51, 9, 80, 0.75);
   --modal-shadow: 1rem 1rem 2rem 0 rgba(0,0,0,0.75);
+  /* cursor */
+  --cursor: url('images/cursor/wand.cur'), auto;
 }
 
 *,
@@ -42,7 +44,7 @@ body {
   background-color: white;
   background-size: cover;
   background-repeat: no-repeat;
-  cursor: url('images/cursor/wand.cur'), auto;
+  cursor: var(--cursor);
 }
 
 body * {
@@ -55,8 +57,21 @@ header {
   position: relative;
 }
 
-header > a {
-  font-size: 2vw;
+header a {
+  font-size: 1vw;
+  color: black;
+  color: rgb(122, 72, 10);
+  cursor: var(--cursor);
+}
+
+.icons {
+  position: absolute;
+  top: 2vw;
+  right: 2vw;
+  width: 5vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
  
 h1 {

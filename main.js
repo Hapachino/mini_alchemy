@@ -4,9 +4,9 @@ $('document').ready(function () {
 
 const config = {
   startingCards: ['air', 'earth', 'fire', 'water'],
-  totalCards: 2 * 3,
+  totalCards: 9 * 4,
   // 1000ms base line to account for modal transition time
-  hideDelay: 1000 + 500,
+  hideDelay: 1000 + 750,
   formulas: {
     // tier 1
     // air, earth, fire, water
@@ -80,7 +80,7 @@ function unInit() {
 }
 
 function clearCards() {
-  $('#game-area').html('');
+  $('#game-area').empty();
 }
 
 function createCard(element, parent) {
@@ -323,15 +323,13 @@ function newGameWobble() {
 RESET: modal delay, card flip delay, total cards
 
 TODO:
-new game wiggle
-show all cards when game is over, click hide modal
-win modal
-background image
-new element discovered animation - smoke
-h1 styling
-more cards - 10
 about
 settings - difficulty, always reveal
+background image
+text styling
+h1 styling
+more cards - 10
+new element discovered animation - smoke? alchemy circle background?
 story line
 more cards - 20
 media query
