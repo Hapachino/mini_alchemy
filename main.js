@@ -4,7 +4,7 @@ $('document').ready(function () {
 
 const config = {
   startingCards: ['air', 'earth', 'fire', 'water'],
-  totalCards: 2 * 4,
+  totalCards: 2 * 3,
   // 1000ms base line to account for modal transition time
   hideDelay: 1000 + 500,
   formulas: {
@@ -54,7 +54,7 @@ const gameStats = {
   gamesPlayed: 0,
   gamesWon: 0,
   attempts: 0,
-  elements: 0,
+  discovered: 0,
 }
 
 function init() {
@@ -64,7 +64,7 @@ function init() {
 
   gameState.targetElement = randomObjectValue(config.formulas);
   updateModal(gameState.targetElement);
-  showModal();
+  showModal('you must create:');
   delayedHideModal();
 
   addResetHandler();
@@ -141,8 +141,8 @@ function cardClicked() {
 
     // create card and delay hide
     const card = createCard(newElement, 'main');
-
     showCard(card);
+    newCardAnimation(card);
     delayedHide(card);
     delayedHideAndResetCards();
 
@@ -153,7 +153,7 @@ function cardClicked() {
     if (totalCardsReached && !targetElementCreated) {
       removeCardClickHandlers();
       updateModal('defeat');
-      showModal();
+      showModal('uh oh...');
     // if first time creating this element
     } else if ($(`[name=${newElement}]`).length === 1) {
       updateModal(newElement);
@@ -161,13 +161,14 @@ function cardClicked() {
       if (targetElementCreated) {
         gameStats.gamesWon++;
         removeCardClickHandlers();
+        showModal('successfully created:');
+
       } else {
+        showModal('discovered:');
         delayedHideModal();
       }
 
-      showModal();
-
-      gameStats.elements++;
+      gameStats.discovered++;
     }
     
     gameStats.attempts++;
@@ -186,6 +187,14 @@ function removeCardClickHandlers() {
 function showCard(card) {
   setTimeout(() => {
     card.addClass('rotate');
+  }, 0)
+}
+
+function newCardAnimation(element) {
+  // reset animation
+  element.removeClass('run-new-card-shadow');
+  setTimeout(() => {
+    element.addClass('run-new-card-shadow');
   }, 0)
 }
 
@@ -208,7 +217,7 @@ function displayStats() {
   $('.games-played .value').text(gameStats.gamesPlayed);
   $('.games-won .value').text(gameStats.gamesWon);
   $('.attempts .value').text(gameStats.attempts);
-  $('.elements .value').text(gameStats.elements);
+  $('.discovered .value').text(gameStats.discovered);
 }
 
 function randomObjectValue(obj) {
@@ -220,7 +229,7 @@ function randomObjectValue(obj) {
 }
 
 function resetStats() {
-  gameStats.attempts = gameStats.elements = 0;
+  gameStats.attempts = gameStats.discovered = 0;
 }
 
 function reset() {
@@ -231,6 +240,7 @@ function reset() {
   displayStats();
 }
 
+// fisher-yates shuffle
 function shuffle(array) {
   for (let i = array.length; i--; i > 0) {
     const j = Math.floor(Math.random() * i);
@@ -253,11 +263,18 @@ function delayedHideModal(ms) {
 
   setTimeout(() => {
     modalVisibility($('.modal'), false);
+    addCardClickHandlers();
   }, delay)
 }
 
-function showModal() {
+function showModal(text) {
+  removeCardClickHandlers();
+  
+  const info = text || '';
+  $('.modal-discovered').text(info);
+
   const modal = $('.modal');
+
   // reset animation
   modal.removeClass('run-show-modal');
   setTimeout(() => {
@@ -267,6 +284,7 @@ function showModal() {
   modalVisibility(modal, true);
 }
 
+// maintains modal visibility after animation
 function modalVisibility(element, visibility) {
   const opacity = visibility ? 1 : 0;
   const transform = visibility ? 'scale(1) translate(-50%, -50%)' : 'scale(0.1) translate(-50%, -50%)';
@@ -278,23 +296,20 @@ function modalVisibility(element, visibility) {
 }
 
 /*
-RESET: modal, card flip delay, total cards
+RESET: modal delay, card flip delay, total cards
 
 TODO:
-show win another way
-new element discovered animation
-combine card animation
+win modal
 background image
+better win and lose screen
+new element discovered animation - smoke
 h1 styling
-more cards
-keyframes for sidebar
+more cards - 10
 about
 settings - difficulty, always reveal
 story line
-real win and lose screen
+more cards - 20
 media query
-local storage - # of elements discovered
-sound effects - combine, new, oops, win, lose
 
 
 IDEAS:
