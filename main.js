@@ -4,9 +4,9 @@ $('document').ready(function () {
 
 const config = {
   startingCards: ['air', 'earth', 'fire', 'water'],
-  totalCards: 8 * 5,
-  flipDelay: 1,
-  modalDelay: 1,
+  totalCards: 2 * 4,
+  flipDelay: 500,
+  modalDelay: 500,
   formulas: {
     // tier 1
     // air, earth, fire, water
@@ -84,7 +84,7 @@ function createCard(element, parent) {
   const frontImage = $('<div>', {
     class: 'front-image',
     css: {
-      backgroundImage: `url(images/${element}.svg)`,
+      backgroundImage: `url(images/elements/${element}.svg)`,
     }
   });
   front.append(frontImage);
@@ -132,37 +132,39 @@ function cardClicked() {
     const search = [firstElement, secondElement].sort().join(' + ');
     const newElement = config.formulas[search] || 'ash';
 
+    // create card and delay hide
+    const card = createCard(newElement, 'main');
+    card.find('.back').addClass('hidden');
+    delayedHide(card);
+    delayedHideAndResetCards();
+
     const totalCardsReached = $('.card').length === config.totalCards;
     const targetElementCreated = newElement === gameState.targetElement;
 
     // if max cards reached and not won
     if (totalCardsReached && !targetElementCreated) {
       removeCardClickHandlers();
-      updateModal('game-over');
+      updateModal('defeat');
       showModal();
     // if first time creating this element
-    } else if ($(`[name=${newElement}]`).length === 0) {
+    } else if ($(`[name=${newElement}]`).length === 1) {
       updateModal(newElement);
-      showModal();
-      
+
       if (targetElementCreated) {
+        $('.modal-text').text('success');
         gameStats.gamesWon++;
         removeCardClickHandlers();
       } else {
         delayedHideModal();
       }
+
+      showModal();
     }
 
     // if element formula is non-existent
     if (newElement === 'ash') {
       gameStats.oops++;
     }
-
-    // create card and delay hide
-    const card = createCard(newElement, 'main');
-    card.find('.back').addClass('hidden');
-    delayedHide(card);
-    delayedHideAndResetCards();
     
     gameStats.attempts++;
     displayStats();
@@ -234,7 +236,7 @@ function shuffle(array) {
 function updateModal(element) {
   const text = element === 'ash' ? 'Oops...' : element.replace(/-/g, ' ');
 
-  $('.modal-image').css('background-image', `url(images/${element}.svg)`);
+  $('.modal-image').css('background-image', `url(images/elements/${element}.svg)`);
   $('.modal-text').text(text);
 }
 
@@ -251,11 +253,10 @@ function showModal() {
 }
 
 /*
+RESET: modal, card flip delay
+
 TODO:
-win screen
-redesign reset button
 side area redesign
-change cursor to wand?
 new element discovered animation
 flip card animation
 modal animation
@@ -267,6 +268,7 @@ keyframes for sidebar
 about
 settings - difficulty, always reveal
 story line
+real win and lose screen
 media query
 local storage - # of elements discovered
 sound effects - combine, new, oops, win, lose
