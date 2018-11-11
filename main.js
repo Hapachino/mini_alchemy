@@ -4,7 +4,7 @@ $('document').ready(function () {
 
 const config = {
   startingCards: ['air', 'earth', 'fire', 'water'],
-  totalCards: 2 * 5,
+  totalCards: 2 * 3,
   // 1000ms base line to account for modal transition time
   hideDelay: 1000 + 500,
   formulas: {
@@ -150,30 +150,23 @@ function cardClicked() {
 
     const totalCardsReached = $('.card').length === config.totalCards;
     const targetElementCreated = newElement === gameState.targetElement;
+    const gameLost = totalCardsReached && !targetElementCreated;
+    const newElementCreated = $(`[name=${newElement}]`).length === 1;
 
-    // if max cards reached and not won
-    if (totalCardsReached && !targetElementCreated) {
-      removeCardClickHandlers();
+    if (gameLost) {
       updateModal('defeat', 'uh oh...');
-      showModal();
-    // if won
     } else if (targetElementCreated) {
-      gameStats.discovered++;
       gameStats.gamesWon++;
-
-      removeCardClickHandlers();
-      updateModal(newElement, 'successfully created:');
-      showModal();
-    // if first time creating element
-    } else if ($(`[name=${newElement}]`).length === 1) {
-      gameStats.discovered++;
-
+      updateModal(newElement, 'you successfully created:');
+    } else if (newElementCreated) {
       const info = newElement === 'failed' ? 'oops...' : 'discovered:';
 
       updateModal(newElement, info);
-      showModal();
-      delayedHideModal();
     }
+
+    showModal();
+    if (newElementCreated && !targetElementCreated) delayedHideModal();
+    if (newElementCreated) gameStats.discovered++;
 
     gameStats.attempts++;
     displayStats();
@@ -310,9 +303,9 @@ function modalVisibility(element, visibility) {
 RESET: modal delay, card flip delay, total cards
 
 TODO:
+show all cards when game is over, click hide modal
 win modal
 background image
-better win and lose screen
 new element discovered animation - smoke
 h1 styling
 more cards - 10
