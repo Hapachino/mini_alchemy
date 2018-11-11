@@ -6,7 +6,7 @@ const config = {
   startingCards: ['air', 'earth', 'fire', 'water'],
   totalCards: 2 * 4,
   flipDelay: 1000,
-  modalDelay: 500,
+  modalDelay: 1500,
   formulas: {
     // tier 1
     // air, earth, fire, water
@@ -61,13 +61,13 @@ function init() {
   shuffle(config.startingCards);
   createStartingCards(config.startingCards, 'main');
   addCardClickHandlers();
-  // get random target element (win condition)
+
   gameState.targetElement = randomObjectValue(config.formulas);
-  // update modal image and text with target element
   updateModal(gameState.targetElement);
   showModal();
   delayedHideModal();
-  $('.new-game').click(reset);
+
+  addResetHandler();
   displayStats();
 }
 
@@ -83,7 +83,7 @@ function createCard(element, parent) {
     class: 'front-image',
     css: {
       backgroundImage: `url(images/elements/${element}.svg)`,
-    }
+    },
   });
   front.append(frontImage);
 
@@ -251,12 +251,12 @@ function delayedHideModal(ms) {
   const delay = ms || config.modalDelay;
 
   setTimeout(() => {
-    $('.modal').css('display', 'none');
+    $('.modal').removeClass('in');
   }, delay)
 }
 
 function showModal() {
-  $('.modal').css('display', 'flex');
+  $('.modal').css('display', 'flex').addClass('in');
 }
 
 /*

@@ -182,7 +182,6 @@ main {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   height: 20vw;
   width: 15vw;
   background: var(--card-front-background);
@@ -192,6 +191,8 @@ main {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  transition: transform 1s ease;
+  transform-origin: top left;
 }
 
 .modal-image {
@@ -208,4 +209,14 @@ main {
   text-align: center;
   font-size: 2vw;
   text-transform: uppercase;
+}
+
+.out {
+  transform: scale(0.1) translate(-50%, -50%);
+  opacity: 0;
+}
+
+.in {
+  transform: scale(1) translate(-50%, -50%);
+  opacity: 1;
 }
