@@ -5,7 +5,7 @@ $('document').ready(function () {
 const config = {
   startingCards: ['air', 'earth', 'fire', 'water'],
   totalCards: 2 * 4,
-  flipDelay: 500,
+  flipDelay: 1000,
   modalDelay: 500,
   formulas: {
     // tier 1
@@ -54,7 +54,7 @@ const gameStats = {
   gamesPlayed: 0,
   gamesWon: 0,
   attempts: 0,
-  oops: 0,
+  elements: 0,
 }
 
 function init() {
@@ -78,8 +78,6 @@ function unInit() {
 }
 
 function createCard(element, parent) {
-  const card = $('<div>').addClass('card').attr('name', element);
-
   const front = $('<div>').addClass('front');
   const frontImage = $('<div>', {
     class: 'front-image',
@@ -93,9 +91,13 @@ function createCard(element, parent) {
   const backImage = $('<div>').addClass('back-image');
   back.append(backImage);
 
+  const card = $('<div>').addClass('card').attr('name', element);
   card.append(front, back);
-  $(parent).append(card);
 
+  const perspective = $('<div>').addClass('perspective');
+  perspective.append(card);
+
+  $(parent).append(perspective);
   return card;
 }
 
@@ -120,12 +122,13 @@ function cardClicked() {
     gameState.clicked++;
   }
 
-  $(this).find('.back').addClass('hidden');
+  const clicked = $(this);
+  showCard(clicked);
 
   if (!gameState.firstCardClicked) {
-    gameState.firstCardClicked = $(this);
+    gameState.firstCardClicked = clicked;
   } else {
-    gameState.secondCardClicked = $(this);
+    gameState.secondCardClicked = clicked;
 
     const firstElement = gameState.firstCardClicked.attr('name');
     const secondElement = gameState.secondCardClicked.attr('name');
@@ -134,7 +137,8 @@ function cardClicked() {
 
     // create card and delay hide
     const card = createCard(newElement, 'main');
-    card.find('.back').addClass('hidden');
+
+    showCard(card);
     delayedHide(card);
     delayedHideAndResetCards();
 
@@ -159,11 +163,8 @@ function cardClicked() {
       }
 
       showModal();
-    }
 
-    // if element formula is non-existent
-    if (newElement === 'ash') {
-      gameStats.oops++;
+      gameStats.elements++;
     }
     
     gameStats.attempts++;
@@ -179,16 +180,22 @@ function removeCardClickHandlers() {
   $('#game-area').off('click', '.card', cardClicked);
 }
 
+function showCard(card) {
+  setTimeout(() => {
+    card.addClass('rotate');
+  }, 0)
+}
+
 function delayedHide(card) {
   setTimeout(() => {
-    card.find('.back').removeClass('hidden');
+    card.removeClass('rotate');
   }, config.flipDelay);
 }
 
 function delayedHideAndResetCards() {
   setTimeout(() => {
-    gameState.firstCardClicked.find('.back').removeClass('hidden');
-    gameState.secondCardClicked.find('.back').removeClass('hidden');
+    gameState.firstCardClicked.removeClass('rotate');
+    gameState.secondCardClicked.removeClass('rotate');
 
     gameState.firstCardClicked = gameState.secondCardClicked = null;
     gameState.clicked = 0;
@@ -199,7 +206,7 @@ function displayStats() {
   $('.games-played .value').text(gameStats.gamesPlayed);
   $('.games-won .value').text(gameStats.gamesWon);
   $('.attempts .value').text(gameStats.attempts);
-  $('.oops .value').text(gameStats.oops);
+  $('.elements .value').text(gameStats.elements);
 }
 
 function randomObjectValue(obj) {
@@ -211,7 +218,7 @@ function randomObjectValue(obj) {
 }
 
 function resetStats() {
-  gameStats.attempts = gameStats.oops = 0;
+  gameStats.attempts = gameStats.elements = 0;
 }
 
 function reset() {
@@ -256,10 +263,8 @@ function showModal() {
 RESET: modal, card flip delay
 
 TODO:
-side area redesign
-new element discovered animation
-flip card animation
 modal animation
+new element discovered animation
 combine card animation
 background image
 h1 styling

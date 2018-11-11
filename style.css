@@ -16,6 +16,8 @@
   --font-color: black;
   /* modal */
   --modal-border: .5rem black solid;
+  /* animation */
+  --rotate-card-perspective: 300px;
 }
 
 *,
@@ -103,6 +105,7 @@ aside * {
   background: url('images/aside/cauldron.svg') no-repeat center;
   background-size: contain;
   text-align: center;
+  color: white;
 }
 
 main {
@@ -120,6 +123,16 @@ main {
   position: relative;
   height: calc((100vh - var(--header-height) - (var(--card-rows) - 1) * var(--row-gap)) / var(--card-rows)); 
   width: calc((100vh - var(--header-height) - (var(--card-rows) - 1) * var(--row-gap)) / var(--card-rows));
+  transform-style: preserve-3d;
+  transition: transform 1s ease;
+}
+
+.perspective {
+  perspective: var(--rotate-card-perspective);
+}
+
+.rotate {
+  transform: rotateY(180deg);
 }
 
 .card, .front, .back {
@@ -132,15 +145,16 @@ main {
   position: absolute;
   top: 0;
   left: 0;
-}
-
-.front {
-  z-index: -1; 
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--card-front-background);
   border: var(--card-border);
+  backface-visibility: hidden;
+}
+
+.front {
+  background: var(--card-front-background);
+  transform: rotateY(180deg);
 }
 
 .front-image {
@@ -150,11 +164,7 @@ main {
 }
 
 .back {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background: var(--card-back-background);
-  border: var(--card-border);
 }
 
 .back-image {
