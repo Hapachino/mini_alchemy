@@ -5,8 +5,8 @@ $('document').ready(function () {
 const config = {
   startingCards: ['air', 'earth', 'fire', 'water'],
   totalCards: 2 * 4,
-  flipDelay: 1000,
-  modalDelay: 1500,
+  // 1000ms base line to account for modal transition time
+  hideDelay: 1000 + 500,
   formulas: {
     // tier 1
     // air, earth, fire, water
@@ -72,9 +72,13 @@ function init() {
 }
 
 function unInit() {
-  $('#game-area').html('');
+  clearCards();
   removeCardClickHandlers();
   removeResetHandler();
+}
+
+function clearCards() {
+  $('#game-area').html('');
 }
 
 function createCard(element, parent) {
@@ -155,7 +159,6 @@ function cardClicked() {
       updateModal(newElement);
 
       if (targetElementCreated) {
-        $('.modal-text').text('success');
         gameStats.gamesWon++;
         removeCardClickHandlers();
       } else {
@@ -189,17 +192,16 @@ function showCard(card) {
 function delayedHide(card) {
   setTimeout(() => {
     card.removeClass('rotate');
-  }, config.flipDelay);
+  }, config.hideDelay);
 }
 
 function delayedHideAndResetCards() {
   setTimeout(() => {
     gameState.firstCardClicked.removeClass('rotate');
     gameState.secondCardClicked.removeClass('rotate');
-
     gameState.firstCardClicked = gameState.secondCardClicked = null;
     gameState.clicked = 0;
-  }, config.flipDelay);
+  }, config.hideDelay);
 }
 
 function displayStats() {
@@ -222,7 +224,6 @@ function resetStats() {
 }
 
 function reset() {
-  debugger;
   gameStats.gamesPlayed++;
   unInit();
   init();
@@ -248,22 +249,39 @@ function updateModal(element) {
 }
 
 function delayedHideModal(ms) {
-  const delay = ms || config.modalDelay;
+  const delay = ms || config.hideDelay;
 
   setTimeout(() => {
-    $('.modal').removeClass('in');
+    modalVisibility($('.modal'), false);
   }, delay)
 }
 
 function showModal() {
-  $('.modal').css('display', 'flex').addClass('in');
+  const modal = $('.modal');
+  // reset animation
+  modal.removeClass('run-show-modal');
+  setTimeout(() => {
+    modal.addClass('run-show-modal');
+  }, 0)
+
+  modalVisibility(modal, true);
+}
+
+function modalVisibility(element, visibility) {
+  const opacity = visibility ? 1 : 0;
+  const transform = visibility ? 'scale(1) translate(-50%, -50%)' : 'scale(0.1) translate(-50%, -50%)';
+  
+  element.css({
+    opacity,
+    transform,
+  })
 }
 
 /*
-RESET: modal, card flip delay
+RESET: modal, card flip delay, total cards
 
 TODO:
-modal animation
+show win another way
 new element discovered animation
 combine card animation
 background image
