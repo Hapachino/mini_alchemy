@@ -69,6 +69,8 @@ function init() {
 
   addResetHandler();
   displayStats();
+
+  newGameWobble();
 }
 
 function unInit() {
@@ -119,6 +121,22 @@ function createStartingCards(cards, parent) {
   }
 }
 
+function getNewElement() {
+  const firstElement = gameState.firstCardClicked.attr('name');
+  const secondElement = gameState.secondCardClicked.attr('name');
+  const search = [firstElement, secondElement].sort().join(' + ');
+  const newElement = config.formulas[search] || 'failed';
+
+  return newElement;
+}
+
+function createNewElement(newElement) {
+  const card = createCard(newElement, 'main');
+  showCard(card);
+  newCardAnimation(card);
+  delayedHide(card);
+}
+
 function cardClicked() {
   if (gameState.clicked === 2) {
     return;
@@ -134,40 +152,34 @@ function cardClicked() {
   } else {
     gameState.secondCardClicked = clicked;
 
+    const newElement = getNewElement();
+    createNewElement(newElement);
 
-
-    const firstElement = gameState.firstCardClicked.attr('name');
-    const secondElement = gameState.secondCardClicked.attr('name');
-    const search = [firstElement, secondElement].sort().join(' + ');
-    const newElement = config.formulas[search] || 'failed';
-
-    // create card and delay hide
-    const card = createCard(newElement, 'main');
-    showCard(card);
-    newCardAnimation(card);
-    delayedHide(card);
     delayedHideAndResetCards();
 
     const totalCardsReached = $('.card').length === config.totalCards;
-    const targetElementCreated = newElement === gameState.targetElement;
-    const gameLost = totalCardsReached && !targetElementCreated;
+    const gameWon = newElement === gameState.targetElement;
+    const gameLost = totalCardsReached && !gameWon;
     const newElementCreated = $(`[name=${newElement}]`).length === 1;
 
     if (gameLost) {
       updateModal('defeat', 'uh oh...');
-    } else if (targetElementCreated) {
+    } else if (gameWon) {
       gameStats.gamesWon++;
       updateModal(newElement, 'you successfully created:');
     } else if (newElementCreated) {
       const info = newElement === 'failed' ? 'oops...' : 'discovered:';
-
       updateModal(newElement, info);
     }
 
     showModal();
-    if (newElementCreated && !targetElementCreated) delayedHideModal();
-    if (newElementCreated) gameStats.discovered++;
+    if (gameLost || gameWon) {
+      newGameWobble();
+    } else {
+      delayedHideModal();
+    }
 
+    if (newElementCreated) gameStats.discovered++;
     gameStats.attempts++;
     displayStats();
   }
@@ -299,10 +311,19 @@ function modalVisibility(element, visibility) {
   })
 }
 
+function newGameWobble() {
+  const newGame = $('.new-game');
+  newGame.removeClass('run-wobble');
+  setTimeout(() => {
+    newGame.addClass('run-wobble');
+  }, 0)
+}
+
 /*
 RESET: modal delay, card flip delay, total cards
 
 TODO:
+new game wiggle
 show all cards when game is over, click hide modal
 win modal
 background image
