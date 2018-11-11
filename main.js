@@ -4,7 +4,7 @@ $('document').ready(function () {
 
 const config = {
   startingCards: ['air', 'earth', 'fire', 'water'],
-  totalCards: 2 * 3,
+  totalCards: 2 * 5,
   // 1000ms base line to account for modal transition time
   hideDelay: 1000 + 500,
   formulas: {
@@ -63,8 +63,8 @@ function init() {
   addCardClickHandlers();
 
   gameState.targetElement = randomObjectValue(config.formulas);
-  updateModal(gameState.targetElement);
-  showModal('you must create:');
+  updateModal(gameState.targetElement, 'you must create:');
+  showModal();
   delayedHideModal();
 
   addResetHandler();
@@ -134,10 +134,12 @@ function cardClicked() {
   } else {
     gameState.secondCardClicked = clicked;
 
+
+
     const firstElement = gameState.firstCardClicked.attr('name');
     const secondElement = gameState.secondCardClicked.attr('name');
     const search = [firstElement, secondElement].sort().join(' + ');
-    const newElement = config.formulas[search] || 'ash';
+    const newElement = config.formulas[search] || 'failed';
 
     // create card and delay hide
     const card = createCard(newElement, 'main');
@@ -152,29 +154,32 @@ function cardClicked() {
     // if max cards reached and not won
     if (totalCardsReached && !targetElementCreated) {
       removeCardClickHandlers();
-      updateModal('defeat');
-      showModal('uh oh...');
-    // if first time creating this element
-    } else if ($(`[name=${newElement}]`).length === 1) {
-      updateModal(newElement);
-
-      if (targetElementCreated) {
-        gameStats.gamesWon++;
-        removeCardClickHandlers();
-        showModal('successfully created:');
-
-      } else {
-        showModal('discovered:');
-        delayedHideModal();
-      }
-
+      updateModal('defeat', 'uh oh...');
+      showModal();
+    // if won
+    } else if (targetElementCreated) {
       gameStats.discovered++;
+      gameStats.gamesWon++;
+
+      removeCardClickHandlers();
+      updateModal(newElement, 'successfully created:');
+      showModal();
+    // if first time creating element
+    } else if ($(`[name=${newElement}]`).length === 1) {
+      gameStats.discovered++;
+
+      const info = newElement === 'failed' ? 'oops...' : 'discovered:';
+
+      updateModal(newElement, info);
+      showModal();
+      delayedHideModal();
     }
-    
+
     gameStats.attempts++;
     displayStats();
   }
 }
+
 
 function addCardClickHandlers() {
   $('#game-area').on('click', '.card', cardClicked);
@@ -251,11 +256,20 @@ function shuffle(array) {
   return array;
 }
 
-function updateModal(element) {
-  const text = element === 'ash' ? 'Oops...' : element.replace(/-/g, ' ');
+function updateModal(element, text) {
+  let modalText = element.replace(/-/g, ' ');
+  let modalInfo;
 
+  if (element === 'failed') {
+    modalInfo = 'oops...';
+  } else {
+    // remove hyphens 
+    modalInfo = text || '';
+  }
+  
   $('.modal-image').css('background-image', `url(images/elements/${element}.svg)`);
-  $('.modal-text').text(text);
+  $('.modal-info').text(modalInfo);
+  $('.modal-text').text(modalText);
 }
 
 function delayedHideModal(ms) {
@@ -267,12 +281,9 @@ function delayedHideModal(ms) {
   }, delay)
 }
 
-function showModal(text) {
+function showModal() {
   removeCardClickHandlers();
   
-  const info = text || '';
-  $('.modal-discovered').text(info);
-
   const modal = $('.modal');
 
   // reset animation
