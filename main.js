@@ -131,7 +131,7 @@ const config = {
     'bullet + human ': 'corpse',
     'clay + human': 'potter',
     'dust + human': 'allergy',
-    'fire + human': 'fireman',
+    'fire + human': 'firefighter',
     'explosion + human': 'corpse',
     'glass + human': 'glasses',
     'heat + human': 'warmth',
