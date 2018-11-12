@@ -161,30 +161,28 @@ function cardClicked() {
     const gameWon = newElement === gameState.targetElement;
     const gameLost = totalCardsReached && !gameWon;
     const newElementCreated = $(`[name=${newElement}]`).length === 1;
+    const failed = newElement === 'failed';
 
     if (gameLost) {
       updateModal('defeat', 'uh oh...');
+      showModal();
     } else if (gameWon) {
       gameStats.gamesWon++;
       updateModal(newElement, 'you successfully created:');
+      showModal();
     } else if (newElementCreated) {
-      const info = newElement === 'failed' ? 'oops...' : 'discovered:';
+      const info = failed ? 'oops...' : 'new discovery:';
       updateModal(newElement, info);
-    }
-
-    showModal();
-    if (gameLost || gameWon) {
-      newGameWobble();
-    } else {
+      showModal();
       delayedHideModal();
     }
-
-    if (newElementCreated) gameStats.discovered++;
+    
+    if (gameLost || gameWon) newGameWobble();
+    if (newElementCreated && !failed) gameStats.discovered++;
     gameStats.attempts++;
     displayStats();
   }
 }
-
 
 function addCardClickHandlers() {
   $('#game-area').on('click', '.card', cardClicked);
@@ -261,20 +259,10 @@ function shuffle(array) {
   return array;
 }
 
-function updateModal(element, text) {
-  let modalText = element.replace(/-/g, ' ');
-  let modalInfo;
-
-  if (element === 'failed') {
-    modalInfo = 'oops...';
-  } else {
-    // remove hyphens 
-    modalInfo = text || '';
-  }
-  
+function updateModal(element, info) {
   $('.modal-image').css('background-image', `url(images/elements/${element}.svg)`);
-  $('.modal-info').text(modalInfo);
-  $('.modal-text').text(modalText);
+  $('.modal-info').text(info);
+  $('.modal-text').text(element.replace(/-/g, ' '));
 }
 
 function delayedHideModal(ms) {
@@ -323,7 +311,6 @@ function newGameWobble() {
 RESET: modal delay, card flip delay, total cards
 
 TODO:
-about
 settings - difficulty, always reveal
 background image
 text styling

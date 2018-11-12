@@ -239,6 +239,23 @@ main {
   text-transform: uppercase;
 }
 
+.settings-modal {
+  /* display: none; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 10vw;
+  width: 15vw;
+  background: var(--card-front-background);
+  padding: 2vw;
+  border: 3px solid black;
+}
+
+label {
+  font-size: 1.5vw;
+}
+
 @keyframes show-modal {
   0% { opacity: 0; transform: scale(.1) translate(-50%, -50%); }
   50% { opacity: 1; transform: scale(1) translate(-50%, -50%); }
