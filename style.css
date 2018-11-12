@@ -23,7 +23,7 @@
   /* modal */
   --modal-border: .5rem black solid;
   /* animation */
-  --rotate-card-perspective: 300px;
+  --rotate-card-perspective: 1000px;
   /* shadow */
   --card-shadow: .5rem .5rem 1rem 0 rgba(0, 0, 0, 0.75);
   --new-card-shadow: 0rem 0rem 1rem .5rem rgba(51, 9, 80, 0.75);
@@ -38,12 +38,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* Amatic+SC|Kaushan+Script|Patrick+Hand|||Shadows+Into+Light" */
-
   font-family: 'Amatic SC'; 
+  font-weight: bold;
   cursor: var(--cursor);
 }
-
 
 html {
   font-size: 62.5%;
