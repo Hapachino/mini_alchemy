@@ -128,7 +128,6 @@ const config = {
     'galaxy-cluster + galaxy-cluster': 'universe',
     'rain + smoke': 'acid-rain',
 
-
     // tier 9
     'bullet + human ': 'corpse',
     'clay + human': 'potter',
@@ -241,6 +240,13 @@ function createCard(element, parent) {
 
   const card = $('<div>').addClass('card').attr('name', element);
   card.append(front, back);
+  
+  setTimeout(() => {
+    if ($('[name=reveal]').is(':checked')) {
+      $('.card').addClass('rotate');
+    }
+  }, 0)
+
 
   const perspective = $('<div>').addClass('perspective');
   perspective.append(card);
