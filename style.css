@@ -28,6 +28,7 @@
   --card-shadow: .5rem .5rem 1rem 0 rgba(0, 0, 0, 0.75);
   --new-card-shadow: 0rem 0rem 3rem 1.5rem rgba(51, 9, 80, 0.75);
   --modal-shadow: 1rem 1rem 2rem 0 rgba(0,0,0,0.75);
+
   /* cursor */
   --cursor: url('images/cursor/wand.cur'), auto;
 }

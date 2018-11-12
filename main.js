@@ -466,11 +466,26 @@ function newGameWobbleOnEnter() {
 
 /*
 TODO:
-card shadow
-new element discovered animation 
-story line
 settings - difficulty
+additional new element discovered animation 
+story line
 refactor
 media query
 save discovered elements between games?
 */
+
+function gameDifficulty(level) {
+  const values = Object.values(config.formulas);
+  const length = values.length;
+  const firstThird = Math.floor(length / 3);
+  const secondThird = Math.floor(length * 2 / 3);
+
+  switch (level) {
+    case 'easy':
+      return values.slice(0, firstThird);
+    case 'medium':
+      return values.slice(0, secondThird);
+    case 'hard':
+      return values;
+  }
+}
