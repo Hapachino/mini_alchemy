@@ -6,6 +6,7 @@ const config = {
   startingCards: ['air', 'earth', 'fire', 'water'],
   totalCards: 9 * 4,
   hideCardDelay: 1750,
+  hideCardDelayToggle: 1250,
   hideModalDelay: 1750,
   reveal: false,
   formulas: {
@@ -209,8 +210,10 @@ function addSettingsClickHandler() {
   $('[name=reveal]').click(function() {
     if ($(this).is(':checked')) {
       $('.card').addClass('rotate');
+      config.hideCardDelay -= config.hideCardDelayToggle;
     } else {
       $('.card').removeClass('rotate');
+      config.hideCardDelay += config.hideCardDelayToggle;
     }
 
     // toggle reveal variable
