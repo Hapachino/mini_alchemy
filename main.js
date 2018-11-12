@@ -180,7 +180,7 @@ function init() {
   addSettingsClickHandler();
 
   gameState.targetElement = randomObjectValue(config.formulas);
-  updateModal('primordial-soup', 'you must create:');
+  updateModal(gameState.targetElement, 'you must create:');
   showModal();
   delayedHideModal();
 
@@ -287,7 +287,7 @@ function cardClicked() {
   }
 
   const clicked = $(this);
-  if (config.reveal) cardShadow(clicked);
+  cardShadow(clicked);
   showCard(clicked);
 
   if (!gameState.firstCardClicked) {
@@ -466,7 +466,7 @@ function newGameWobbleOnEnter() {
 
 /*
 TODO:
-settings checkbox align
+card shadow
 new element discovered animation 
 story line
 settings - difficulty
