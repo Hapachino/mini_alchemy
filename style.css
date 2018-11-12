@@ -1,7 +1,6 @@
 :root {
     /* layout */
-  --background-image: url('images/background/paper.jpg');
-  --background-color: grey;
+  --background-image: url('images/background/fog.png');
   --header-height: 13vh;
   --main-width: 85%;
   /* cards */
@@ -13,7 +12,7 @@
   --card-back-image: url('images/cardback/alchemy.png');
   --card-border: .3rem black solid;
   /* color */ 
-  --font-color: black;
+  --font-color: white;
   /* modal */
   --modal-border: .5rem black solid;
   /* animation */
@@ -33,7 +32,9 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Marcellus SC'; 
+  cursor: var(--cursor);
 }
+
 
 html {
   font-size: 62.5%;
@@ -41,10 +42,8 @@ html {
 
 body {
   font-size: 0;
-  background-color: white;
+  background: var(--background-image);
   background-size: cover;
-  background-repeat: no-repeat;
-  cursor: var(--cursor);
 }
 
 body * {
@@ -59,8 +58,11 @@ header {
 
 header a {
   font-size: 1vw;
-  color: silver;
-  cursor: var(--cursor);
+  color: white;
+}
+
+header a:hover {
+  color: black;
 }
 
 .icons {
@@ -234,7 +236,7 @@ main {
   height: 5vw;
   width: 100%;
   text-align: center;
-  font-size: 1.8vw;
+  font-size: 1.6vw;
   text-transform: uppercase;
 }
 
@@ -259,9 +261,16 @@ label {
 }
 
 .exit-settings {
-  /* width: 25%; */
-  padding: 0 .25vw;
-  font-size: 1.5vw;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+	background:linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
+	background-color:#ededed;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	color: #777777;
+	font-size: 1.5vw;
+	padding: 0 1rem;
+	text-shadow: 0px 1px 0px #ffffff;
 }
 
 @keyframes show-modal {
