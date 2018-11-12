@@ -59,8 +59,7 @@ header {
 
 header a {
   font-size: 1vw;
-  color: black;
-  color: rgb(122, 72, 10);
+  color: silver;
   cursor: var(--cursor);
 }
 
@@ -240,7 +239,10 @@ main {
 }
 
 .settings-modal {
-  /* display: none; */
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -253,6 +255,12 @@ main {
 }
 
 label {
+  font-size: 1.5vw;
+}
+
+.exit-settings {
+  /* width: 25%; */
+  padding: 0 .25vw;
   font-size: 1.5vw;
 }
 

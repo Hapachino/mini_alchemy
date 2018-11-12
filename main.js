@@ -5,8 +5,8 @@ $('document').ready(function () {
 const config = {
   startingCards: ['air', 'earth', 'fire', 'water'],
   totalCards: 9 * 4,
-  // 1000ms base line to account for modal transition time
-  hideDelay: 1000 + 750,
+  hideDelay: 1500,
+  reveal: false,
   formulas: {
     // tier 1
     // air, earth, fire, water
@@ -61,6 +61,7 @@ function init() {
   shuffle(config.startingCards);
   createStartingCards(config.startingCards, 'main');
   addCardClickHandlers();
+  addSettingsClickHandler();
 
   gameState.targetElement = randomObjectValue(config.formulas);
   updateModal(gameState.targetElement, 'you must create:');
@@ -81,6 +82,26 @@ function unInit() {
 
 function clearCards() {
   $('#game-area').empty();
+}
+
+function addSettingsClickHandler() {
+  $('.settings').click(() => {
+    $('.settings-modal').css('display', 'flex');
+  });
+
+  $('[name=reveal]').click(function() {
+    if ($(this).is(':checked')) {
+      $('.card').addClass('rotate');
+    } else {
+      $('.card').removeClass('rotate');
+    }
+
+    config.reveal = !config.reveal;
+  })
+
+  $('.exit-settings').click(() => {
+    $('.settings-modal').css('display', 'none');
+  })
 }
 
 function createCard(element, parent) {
@@ -133,8 +154,8 @@ function getNewElement() {
 function createNewElement(newElement) {
   const card = createCard(newElement, 'main');
   showCard(card);
-  newCardAnimation(card);
-  delayedHide(card);
+  cardShadow(card);
+  if (!config.reveal) delayedHide(card); 
 }
 
 function cardClicked() {
@@ -145,6 +166,7 @@ function cardClicked() {
   }
 
   const clicked = $(this);
+  if (config.reveal) cardShadow(clicked);
   showCard(clicked);
 
   if (!gameState.firstCardClicked) {
@@ -157,9 +179,9 @@ function cardClicked() {
 
     delayedHideAndResetCards();
 
-    const totalCardsReached = $('.card').length === config.totalCards;
+    const totalCards = $('.card').length === config.totalCards;
     const gameWon = newElement === gameState.targetElement;
-    const gameLost = totalCardsReached && !gameWon;
+    const gameLost = totalCards && !gameWon;
     const newElementCreated = $(`[name=${newElement}]`).length === 1;
     const failed = newElement === 'failed';
 
@@ -198,7 +220,7 @@ function showCard(card) {
   }, 0)
 }
 
-function newCardAnimation(element) {
+function cardShadow(element) {
   // reset animation
   element.removeClass('run-new-card-shadow');
   setTimeout(() => {
@@ -214,8 +236,11 @@ function delayedHide(card) {
 
 function delayedHideAndResetCards() {
   setTimeout(() => {
-    gameState.firstCardClicked.removeClass('rotate');
-    gameState.secondCardClicked.removeClass('rotate');
+    if (!config.reveal) {
+      gameState.firstCardClicked.removeClass('rotate');
+      gameState.secondCardClicked.removeClass('rotate');
+    }
+
     gameState.firstCardClicked = gameState.secondCardClicked = null;
     gameState.clicked = 0;
   }, config.hideDelay);
