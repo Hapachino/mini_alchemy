@@ -180,7 +180,7 @@ function init() {
   addSettingsClickHandler();
 
   gameState.targetElement = randomObjectValue(config.formulas);
-  updateModal(gameState.targetElement, 'you must create:');
+  updateModal('primordial-soup', 'you must create:');
   showModal();
   delayedHideModal();
 
@@ -465,14 +465,12 @@ function newGameWobbleOnEnter() {
 }
 
 /*
-RESET: modal delay, card flip delay, total cards
-
 TODO:
+settings checkbox align
 new element discovered animation 
 story line
 settings - difficulty
+refactor
 media query
-
-IDEAS:
-only create new element if not already created
+save discovered elements between games?
 */

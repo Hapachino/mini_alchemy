@@ -1,9 +1,15 @@
 :root {
-    /* layout */
+  /* layout */
   --background-image: url('images/background/fog.png');
   --header-height: 13vh;
   --main-width: 85%;
   --border-radius: 1rem;
+  /* font size */
+  --h1-font-size: 5vw;
+  --modal-text-font-size: 3vw;
+  --modal-info-font-size: 1.5vw;
+  --aside-font-size: 2vw;
+  --settings-modal-font-size: 2vw;
   /* cards */
   --card-columns: 9;
   --card-rows: 5;
@@ -32,7 +38,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Marcellus SC'; 
+  /* Amatic+SC|Kaushan+Script|Patrick+Hand|||Shadows+Into+Light" */
+
+  font-family: 'Amatic SC'; 
   cursor: var(--cursor);
 }
 
@@ -82,7 +90,7 @@ h1 {
   left: 50%;
   transform: translate(-50%, -50%);
   display: inline-block;
-  font-size: 4vw;
+  font-size: var(--h1-font-size);
   text-transform: uppercase;
   color: var(--font-color);
 }
@@ -99,7 +107,7 @@ aside {
 
 aside * {
   height: 10vh;
-  font-size: 1.3vw;
+  font-size: var(--aside-font-size);
   text-transform: uppercase;
   color: var(--font-color);
   display: flex;
@@ -229,7 +237,7 @@ main {
 }
 
 .modal-info {
-  font-size: 1.2vw;
+  font-size: var(--modal-info-font-size);
   height: 1vw;
 }
 
@@ -237,7 +245,7 @@ main {
   height: 5vw;
   width: 100%;
   text-align: center;
-  font-size: 1.6vw;
+  font-size: var(--modal-text-font-size);
   text-transform: uppercase;
 }
 
@@ -263,7 +271,7 @@ main {
 }
 
 label {
-  font-size: 1.5vw;
+  font-size: var(--settings-modal-font-size);
 }
 
 .exit-settings {
@@ -272,7 +280,7 @@ label {
 	border-radius: var(--border-radius);
 	border: 1px solid white;
 	color: black;
-	font-size: 1.5vw;
+	font-size: var(--settings-modal-font-size);
 	padding: 0 1rem;
 }
 
