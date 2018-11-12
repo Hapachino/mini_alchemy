@@ -5,7 +5,9 @@ $('document').ready(function () {
 const config = {
   startingCards: ['air', 'earth', 'fire', 'water'],
   totalCards: 9 * 4,
-  hideDelay: 1750,
+  hideCardDelay: 1750,
+  hideCardDelayToggle: 1750,
+  hideModalDelay: 1750,
   reveal: false,
   formulas: {
     // tier 1
@@ -201,21 +203,25 @@ function clearCards() {
 
 function addSettingsClickHandler() {
   $('.settings').click(() => {
-    $('.settings-modal').css('display', 'flex');
+    showModal(true);
   });
 
+  // toggles card facing
   $('[name=reveal]').click(function() {
     if ($(this).is(':checked')) {
       $('.card').addClass('rotate');
+      config.hideCardDelay -= config.hideCardDelayToggle;
     } else {
       $('.card').removeClass('rotate');
+      config.hideCardDelay += config.hideCardDelayToggle;
     }
 
+    // toggle reveal variable
     config.reveal = !config.reveal;
   })
 
   $('.exit-settings').click(() => {
-    $('.settings-modal').css('display', 'none');
+    delayedHideModal(1, $('.settings-modal'));
   })
 }
 
@@ -346,7 +352,7 @@ function cardShadow(element) {
 function delayedHide(card) {
   setTimeout(() => {
     card.removeClass('rotate');
-  }, config.hideDelay);
+  }, config.hideCardDelay);
 }
 
 function delayedHideAndResetCards() {
@@ -358,7 +364,7 @@ function delayedHideAndResetCards() {
 
     gameState.firstCardClicked = gameState.secondCardClicked = null;
     gameState.clicked = 0;
-  }, config.hideDelay);
+  }, config.hideCardDelay);
 }
 
 function displayStats() {
@@ -405,19 +411,20 @@ function updateModal(element, info) {
   $('.modal-text').text(element.replace(/-/g, ' '));
 }
 
-function delayedHideModal(ms) {
-  const delay = ms || config.hideDelay;
+function delayedHideModal(ms, isSettings) {
+  const delay = ms || config.hideModalDelay;
+  const modal = isSettings ? $('.settings-modal') : $('.modal'); 
 
   setTimeout(() => {
-    modalVisibility($('.modal'), false);
+    modalVisibility(modal, false);
     addCardClickHandlers();
   }, delay)
 }
 
-function showModal() {
+function showModal(isSettings) {
   removeCardClickHandlers();
   
-  const modal = $('.modal');
+  const modal = !isSettings ? $('.modal') : $('.settings-modal');
 
   // reset animation
   modal.removeClass('run-show-modal');
