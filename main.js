@@ -194,6 +194,7 @@ function unInit() {
   clearCards();
   removeCardClickHandlers();
   removeResetHandler();
+  removeSettingsClickHandler()
 }
 
 function clearCards() {
@@ -207,21 +208,26 @@ function addSettingsClickHandler() {
 
   // toggles card facing
   $('[name=reveal]').click(function() {
-    if ($(this).is(':checked')) {
+    config.reveal = !config.reveal;
+
+    if (config.reveal) {
       $('.card').addClass('rotate');
       config.hideCardDelay -= config.hideCardDelayToggle;
     } else {
       $('.card').removeClass('rotate');
       config.hideCardDelay += config.hideCardDelayToggle;
     }
-
-    // toggle reveal variable
-    config.reveal = !config.reveal;
   })
 
   $('.exit-settings').click(() => {
     delayedHideModal(1, $('.settings-modal'));
   })
+}
+
+function removeSettingsClickHandler() {
+  $('.settings').off('click');
+  $('[name=reveal]').off('click');
+  $('.exit-settings').off('click');
 }
 
 function createCard(element, parent) {
