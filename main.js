@@ -1,6 +1,4 @@
-$('document').ready(function () {
-  init();
-});
+$(document).ready(init);
 
 const config = {
   startingCards: ['air', 'earth', 'fire', 'water'],
@@ -484,6 +482,10 @@ story line
 refactor
 media query
 save discovered elements between games?
+legend
+history
+separate recipe file
+object constructor at beginning to determine game difficulty
 */
 
 function gameDifficulty(level) {
