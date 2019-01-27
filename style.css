@@ -12,7 +12,7 @@
   --settings-modal-font-size: 2vw;
   /* cards */
   --desktop-card-columns: 9;
-  --card-rows: 5;
+  --card-rows: 4;
   --row-gap: 4vh;
   --card-back-background: url('images/cardback/wood.png');
   --card-front-background: url('images/cardback/paper.png');
@@ -153,6 +153,7 @@ aside * {
 
 main {
   width: var(--main-width);
+  height: 87vh;
   padding: 2vw;
   display: inline-grid;
   grid-template-columns: repeat(var(--desktop-card-columns), 1fr);
@@ -163,10 +164,11 @@ main {
 
 .card {
   position: relative;
-  height: calc((100vh - var(--header-height) - (var(--card-rows) - 1) * var(--row-gap)) / var(--card-rows)); 
-  width: calc((100vh - var(--header-height) - (var(--card-rows) - 1) * var(--row-gap)) / var(--card-rows));
+  height: 7.5vw;
+  width: 7.5vw;
   transform-style: preserve-3d;
   transition: transform .7s ease;
+  margin: auto;
 }
 
 .perspective {
@@ -374,8 +376,8 @@ main {
   }
 
   .card {
-    width: calc(96vw / var(--mobile-card-rows));
-    height: calc(96vw / var(--mobile-card-rows));
+    width: 24vw;
+    height: 24vw;
   }
 
   aside {
@@ -439,3 +441,130 @@ main {
     height: 4vw;
   }
 }
+
+/* ipad */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)  { 
+  main {
+    width: 100%;
+    height: 70vh;
+    grid-template-columns: repeat(6, 1fr);
+    row-gap: 2vw;
+  }
+
+  aside {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: .5vw;
+  }
+
+  aside * {
+    font-size: 3vw;
+  }
+
+  .stats {
+    height: 25%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+  }
+
+  .card {
+    width: 10vmin;
+    height: 10vmin;
+  }
+
+  .new-game {
+    display: none;
+  }
+}
+
+@media only screen 
+and (device-width : 1024px) 
+and (device-height : 1366px)  { 
+    main {
+    width: 100%;
+    height: 70vh;
+    grid-template-columns: repeat(6, 1fr);
+    row-gap: 2vw;
+  }
+
+  aside {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: .5vw;
+  }
+
+  aside * {
+    font-size: 5vw;
+  }
+
+  .stats {
+    height: 25%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+  }
+
+  .card {
+    width: 10vmin;
+    height: 10vmin;
+  }
+
+  .new-game {
+    display: none;
+  }
+}
+
+@media only screen 
+  and (device-height: 1024px) 
+  and (device-width: 1366px) {
+      main {
+    width: 100%;
+    height: 70vh;
+    grid-template-columns: repeat(9, 1fr);
+    row-gap: 2vw;
+    }
+
+    aside {
+      height: 10%;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      padding: .5vw;
+    }
+
+    aside * {
+      font-size: 5vw;
+    }
+
+    .stats {
+      height: 25%;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
+      text-align: center;
+    }
+
+    .card {
+      width: 10vmin;
+      height: 10vmin;
+    }
+
+    .new-game {
+      display: none;
+    }
+  }
