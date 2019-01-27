@@ -1,8 +1,7 @@
 $(document).ready(init);
 
 const config = {
-  // startingCards: ['air', 'earth', 'fire', 'water'],
-  startingCards: Array(35),
+  startingCards: ['air', 'earth', 'fire', 'water'],
   totalCards: 9 * 4,
   hideCardDelay: 1750,
   hideCardDelayToggle: 1250,
