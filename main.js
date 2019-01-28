@@ -1,8 +1,8 @@
 $(document).ready(init);
 
 const config = {
-  startingCards: ['air', 'earth', 'fire', 'water'],
-  // startingCards: Array(36), // for layout testing purposes
+  // startingCards: ['air', 'earth', 'fire', 'water'],
+  startingCards: Array(36), // for layout testing purposes
   totalCards: 9 * 4,
   hideCardDelay: 1750,
   hideCardDelayToggle: 1250,
@@ -185,6 +185,8 @@ function init() {
   if ($('.intro-modal').css('display') === 'none') {
     showTargetElement();
   }
+
+  fixStats();
 }
 
 function unInit() {
@@ -495,9 +497,17 @@ function newGameWobbleOnEnter() {
   })
 }
 
+function fixStats() {
+  const aside = $('aside');
+  const screen = $(window);
+  
+  screen.scroll(() => {
+    aside.toggleClass("fix-scroll", screen.scrollTop() > 66);
+  });
+}
+
 /*
 TODO:
-fixed top in mobile
 legend
 history
 settings - difficulty
