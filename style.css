@@ -243,27 +243,6 @@ main {
   opacity: 0;
 }
 
-.modal-image {
-  width: 10vw;
-  height: 10vw;
-  margin: 2vw;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.modal-info {
-  font-size: var(--modal-info-font-size);
-  height: 1vw;
-}
-
-.modal-text {
-  height: 5vw;
-  width: 100%;
-  text-align: center;
-  font-size: var(--modal-text-font-size);
-  text-transform: uppercase;
-}
-
 .settings-modal {
   display: flex;
   flex-direction: column;
@@ -285,6 +264,54 @@ main {
   transform-origin: top left;
 }
 
+.intro-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 65rem;
+  background: var(--card-front-background);
+  padding: 1vw;
+  border: 3px solid black;
+  border-radius: var(--border-radius);
+  transition: transform 1s ease;
+  transform-origin: top left;
+}
+
+.intro-modal p {
+  font-size: 4rem;
+  margin-bottom: 3rem;
+}
+
+.intro-modal button {
+  font-size: 4rem;
+  display: block;
+  margin: auto;
+  height: 5.5rem;
+  width: 15rem;
+}
+
+.modal-image {
+  width: 10vw;
+  height: 10vw;
+  margin: 2vw;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.modal-info {
+  font-size: var(--modal-info-font-size);
+  height: 1vw;
+}
+
+.modal-text {
+  height: 5vw;
+  width: 100%;
+  text-align: center;
+  font-size: var(--modal-text-font-size);
+  text-transform: uppercase;
+}
+
 .settings-modal * {
   font-size: var(--settings-modal-font-size);
 }
@@ -294,7 +321,7 @@ main {
   height: 1.25vw;
 }
 
-.exit-settings {
+.exit {
   box-shadow: 1px 1px 2px 0px black;
 	background-color:white;
 	border-radius: var(--border-radius);
@@ -303,21 +330,26 @@ main {
 	padding: 0 1.5rem;
 }
 
-.exit-settings:focus {
+.exit-intro {
+  width: 10rem;
+  height: 3rem;
+}
+
+.exit:focus {
   outline: none;
 }
 
-.exit-settings:hover {
+.exit:hover {
   transform: translateY(-1px);
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); 
 }
 
-.exit-settings:hover::after {
+.exit:hover::after {
   transform: scaleX(1.4) scaleY(1.6);
   opacity: 0; 
 }
 
-.exit-settings:active {
+.exit:active {
   transform: translateY(1px);
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); 
 }
@@ -362,7 +394,7 @@ main {
   }
 
   .icons {
-    width: 12vw;
+    width: 5rem;
   }
 
   .icons * {
