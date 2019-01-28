@@ -1,7 +1,8 @@
 $(document).ready(init);
 
 const config = {
-  startingCards: ['air', 'earth', 'fire', 'water'],
+  // startingCards: ['air', 'earth', 'fire', 'water'],
+  startingCards: Array(36),
   totalCards: 9 * 4,
   hideCardDelay: 1750,
   hideCardDelayToggle: 1250,
@@ -173,19 +174,17 @@ const gameStats = {
 function init() {
   shuffle(config.startingCards);
   createStartingCards(config.startingCards, 'main');
-  addCardClickHandlers();
-  addSettingsClickHandler();
 
-  gameState.targetElement = randomObjectValue(config.formulas);
-  updateModal(gameState.targetElement, 'you must create:');
-  showModal();
-  delayedHideModal();
-
-  addResetHandler();
   displayStats();
-
   newGameWobble();
   newGameWobbleOnEnter();
+
+  addClickHandlers();
+
+  // first game target modal is shown after intro modal is closed
+  if ($('.intro-modal').css('display') === 'none') {
+    showTargetElement();
+  }
 }
 
 function unInit() {
@@ -195,8 +194,30 @@ function unInit() {
   removeSettingsClickHandler()
 }
 
+function showTargetElement() {
+  gameState.targetElement = randomObjectValue(config.formulas);
+  updateModal(gameState.targetElement, 'you must create:');
+  showModal();
+  delayedHideModal(2500);
+}
+
+function addClickHandlers() {
+  addIntroClickHandler();
+  addCardClickHandlers();
+  addSettingsClickHandler();
+  addResetHandler();
+}
+
 function clearCards() {
   $('#game-area').empty();
+}
+
+function addIntroClickHandler() {
+  $('.exit-intro').click(() => {
+    $('.intro-modal').hide();
+
+    showTargetElement();
+  })
 }
 
 function addSettingsClickHandler() {
@@ -476,16 +497,15 @@ function newGameWobbleOnEnter() {
 
 /*
 TODO:
+intro modal:
+  card to create reveal after exit
+  responsive
 settings - difficulty
-additional new element discovered animation 
-story line
-refactor
-media query
-save discovered elements between games?
 legend
 history
 separate recipe file
 object constructor at beginning to determine game difficulty
+favicon
 */
 
 function gameDifficulty(level) {
