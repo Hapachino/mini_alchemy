@@ -6,4 +6,4 @@
 
 > This game follows the same general rules, with a few additions. Each game, the player is given an element to be created. The game is won if the element is created before 36 cards, and lost otherwise. Cards are turned face up when clicked upon. The position of the initial four elements are randomized. Lastly, illegal combinations produce junk cards which are only capable of creating junk cards as well.
 
-> Mini Alchemy was made with HTML, CSS, JavaScript, and jQuery.
+> Mini Alchemy was made with JavaScript, jQuery, HTML, and CSS without using any libraries.
