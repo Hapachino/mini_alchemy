@@ -497,12 +497,12 @@ function newGameWobbleOnEnter() {
 
 /*
 TODO:
-settings - difficulty
+fixed top in mobile
 legend
 history
+settings - difficulty
 separate recipe file
 object constructor at beginning to determine game difficulty
-favicon
 */
 
 function gameDifficulty(level) {

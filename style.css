@@ -34,7 +34,7 @@
 
   /* mobile settings */
   --mobile-card-columns: 4;
-  --mobile-header-height: 8vh;
+  --mobile-header-height: 8%;
   --mobile-h1-font-size: 11vw;
 
   --mobile-border: 3px solid black;
@@ -393,6 +393,14 @@ main {
 }
 
 @media screen and (max-width: 667px) {
+  body {
+    height: 100vh;
+  }
+
+  .intro-modal {
+    z-index: 3;
+  }
+
   header {
     height: var(--mobile-header-height);
   }
@@ -412,7 +420,9 @@ main {
   main {
     width: 100%;
     grid-template-columns: repeat(var(--mobile-card-columns), 1fr);
+    height: 79vh;
     row-gap: 0;
+    margin-top: 13vh;
   }
 
   .card {
@@ -426,6 +436,9 @@ main {
     display: flex;
     flex-direction: row;
     padding: .5vw;
+    position: fixed;
+    z-index: 2;
+    background-color: #aaaaaa;
   }
 
   aside * {
@@ -497,7 +510,7 @@ main {
   }
 }
 
-/* ipad */
+/* ipads */
 
 @media only screen 
 and (device-width : 1024px) 
