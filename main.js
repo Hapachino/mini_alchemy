@@ -1,8 +1,8 @@
 $(document).ready(init);
 
 const config = {
-  // startingCards: ['air', 'earth', 'fire', 'water'],
-  startingCards: Array(36),
+  startingCards: ['air', 'earth', 'fire', 'water'],
+  // startingCards: Array(36), // for layout testing purposes
   totalCards: 9 * 4,
   hideCardDelay: 1750,
   hideCardDelayToggle: 1250,
@@ -497,9 +497,6 @@ function newGameWobbleOnEnter() {
 
 /*
 TODO:
-intro modal:
-  card to create reveal after exit
-  responsive
 settings - difficulty
 legend
 history
