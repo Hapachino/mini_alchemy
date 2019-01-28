@@ -97,6 +97,14 @@ header a:hover {
   flex-direction: row;
   justify-content: space-between;
 }
+
+.icons a {
+  color: cornflowerblue;
+}
+
+.icons a:hover {
+  color: mediumslateblue;
+}
  
 h1 {
   position: absolute;
