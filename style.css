@@ -627,6 +627,14 @@ and (device-height : 768px)  {
     grid-template-columns: repeat(6, 1fr);
     row-gap: 2vw;
   }
+
+  .legend-modal-elements-container {
+    grid-template-columns: repeat(4, 225px);
+  }
+
+  .history-modal-container {
+    grid-template-columns: repeat(3, 250px);
+  }
 }
 
 @media only screen 
@@ -677,6 +685,14 @@ and (device-height : 1024px)  {
 
   .icons * {
     margin: 0 0.5rem;
+  }
+
+  .legend-modal-elements-container {
+    grid-template-columns: repeat(3, 225px);
+  }
+
+  .history-modal-container {
+    grid-template-columns: repeat(2, 300px);
   }
 }
 
@@ -730,6 +746,14 @@ and (device-height : 1366px) {
   .icons * {
     margin: 0 0.5rem;
   }
+
+  .legend-modal-elements-container {
+    grid-template-columns: repeat(3, 225px);
+  }
+
+  .history-modal-container {
+    grid-template-columns: repeat(3, 250px);
+  }
 }
 
 @media only screen 
@@ -772,5 +796,13 @@ and (device-width: 1366px) {
 
   .new-game {
     display: none;
+  }
+
+  .legend-modal-elements-container {
+    grid-template-columns: repeat(4, 225px);
+  }
+
+  .history-modal-container {
+    grid-template-columns: repeat(4, 250px);
   }
 }
