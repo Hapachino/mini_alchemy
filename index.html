@@ -5,6 +5,7 @@
   <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700|Marcellus+SC" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="jquery-3.3.1.min.js"></script>
+  <script src="formulas.js"></script>
   <script src="main.js"></script>
   <link rel="icon" href="https://img.icons8.com/ios/50/000000/lab-items-filled.png" type="image/gif" sizes="16x16">
   <title>Mini Alchemy</title>
@@ -14,6 +15,7 @@
   <header>
     <h1>Mini Alchemy</h1>
     <div class="icons">
+      <a href="#" class="open-history-modal"><i class="fa fa-book fa-2x" aria-hidden="true"></i></a>
       <a href="#" class="open-legend-modal"><i class="fa fa-file fa-2x" aria-hidden="true"></i></a>
       <a href="#" class="settings"><i class="fa fa-cogs fa-2x" aria-hidden="true"></i></a>
       <a href="https://github.com/Hapachino/mini_alchemy" target="_blank" class="about"><i class="fas fa-info-circle fa-2x"></i></a>
@@ -80,6 +82,13 @@
       <span class="exit-legend-modal"><i class="fa fa-times fa-2x" aria-hidden="true"></i></span>
     </div>
     <div class="legend-modal-elements-container"></div>
+  </div>
+
+  <div class="history-modal">
+    <div class="exit-history-modal-container">
+      <span class="exit-history-modal"><i class="fa fa-times fa-2x" aria-hidden="true"></i></span>
+    </div>
+    <div class="history-modal-container"></div>
   </div>
 </body>
 </html>
