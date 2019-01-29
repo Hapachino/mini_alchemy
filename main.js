@@ -1,8 +1,8 @@
 $(document).ready(init);
 
 const config = {
-  // startingCards: ['air', 'earth', 'fire', 'water'],
-  startingCards: Array(36), // for layout testing purposes
+  startingCards: ['air', 'earth', 'fire', 'water'],
+  // startingCards: Array(36), // for layout testing purposes
   totalCards: 9 * 4,
   hideCardDelay: 1750,
   hideCardDelayToggle: 1250,
@@ -172,8 +172,8 @@ const gameStats = {
 }
 
 function init() {
-  shuffle(config.startingCards);
-  createStartingCards(config.startingCards, 'main');
+  const shuffled = shuffle(config.startingCards);
+  createStartingCards(shuffled, 'main');
 
   displayStats();
   newGameWobble();
@@ -187,8 +187,7 @@ function init() {
   // }
 
   fixStats();
-  insertLegend('galaxy-cluster');
-  insertLegend('water');
+  initialLegend();
 }
 
 function unInit() {
@@ -210,6 +209,7 @@ function addClickHandlers() {
   addCardClickHandlers();
   addSettingsClickHandler();
   addResetHandler();
+  addLegendClickHandlers();
 }
 
 function clearCards() {
@@ -221,7 +221,7 @@ function addIntroClickHandler() {
     $('.intro-modal').hide();
 
     showTargetElement();
-  })
+  });
 }
 
 function addSettingsClickHandler() {
@@ -353,6 +353,7 @@ function cardClicked() {
       updateModal(newElement, info);
       showModal();
       delayedHideModal();
+      insertLegend(newElement);
     }
     
     if (gameLost || gameWon) newGameWobble();
@@ -431,13 +432,15 @@ function reset() {
 
 // fisher-yates shuffle
 function shuffle(array) {
-  for (let i = array.length; i--; i > 0) {
+  const shuffled = array.slice();
+
+  for (let i = shuffled.length; i--; i > 0) {
     const j = Math.floor(Math.random() * i);
 
-    [array[i], array[j]] = [array[j], array[i]];
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
 
-  return array;
+  return shuffled;
 }
 
 function updateModal(element, info) {
@@ -514,7 +517,23 @@ function insertLegend(element) {
   const info = $('<div>').addClass('legend-info').text(element.replace(/-/g, ' '));
 
   legendEntry.append(image).append(info);
-  $('.legend-modal').append(legendEntry);
+  $('.legend-modal-elements-container').append(legendEntry);
+}
+
+function initialLegend() {
+  config.startingCards.forEach(card => {
+    insertLegend(card);
+  });
+}
+
+function addLegendClickHandlers() {
+  $('.open-legend-modal').click(() => {
+    $('.legend-modal').toggle();
+  });
+
+  $('.exit-legend-modal').click(() => {
+    $('.legend-modal').hide();
+  });
 }
 
 /*
