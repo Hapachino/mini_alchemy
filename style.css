@@ -92,7 +92,7 @@ header a:hover {
   position: absolute;
   top: 2vw;
   right: 2vw;
-  width: 15rem;
+  width: 20rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -297,6 +297,51 @@ main {
   border-radius: var(--border-radius);
   transition: transform 1s ease;
   transform-origin: top left;
+  display: none;
+}
+
+.history-modal {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--card-front-background);
+  padding: 2rem;
+  border: 3px solid black;
+  border-radius: var(--border-radius);
+  transition: transform 1s ease;
+  transform-origin: top left;
+  display: none;
+}
+
+.history-modal-container {
+  display: grid;
+  grid-template-columns: repeat(4, 250px);
+}
+
+.history-entry {
+  margin: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.history-entry {
+  font-size: 5rem;
+}
+
+.history-image {
+  height: 6rem;
+  width: 6rem;
+  margin: 0 1.25rem;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.exit-history-modal {
+  position: absolute;
+  right: 1.25rem;
+  top: 1rem;
 }
 
 .legend-modal-elements-container {
@@ -306,7 +351,7 @@ main {
 
 .exit-legend-modal {
   position: absolute;
-  right: 1rem;
+  right: 1.25rem;
   top: 1rem;
 }
 
@@ -326,6 +371,7 @@ main {
   width: 6rem;
   margin-right: 2rem;
   background-repeat: no-repeat;
+  background-position: center;
   display: inline-block;
 }
 
