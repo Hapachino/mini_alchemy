@@ -56,6 +56,7 @@ function removeClickHandlers() {
   removeSettingsClickHandler();
   removeLegendClickHandlers();
   removeHistoryClickHandlers();
+  removeTargetClickHandlers();
 }
 
 function showTargetElement() {
@@ -72,6 +73,7 @@ function addClickHandlers() {
   addLegendClickHandlers();
   addIntroClickHandler();
   addHistoryClickHandlers();
+  addTargetClickHandler();
 }
 
 function clearCards() {
@@ -451,9 +453,20 @@ function clearHistory() {
   $('.history-modal-container').empty();
 }
 
+function addTargetClickHandler() {
+  $('.target').click(() => {
+    updateModal(gameState.targetElement, 'you must create:');
+    showModal();
+    delayedHideModal(2500);
+  })
+}
+
+function removeTargetClickHandler() {
+  $('.target').off('click');
+}
+
 /*
 TODO:
-target element on click
 mobile landscape responsive
 
 BLUE SKY:
@@ -461,6 +474,7 @@ settings - difficulty
 object constructor at beginning to determine game difficulty
 */
 
+// in progress
 function gameDifficulty(level) {
   const values = Object.values(formulas);
   const length = values.length;
