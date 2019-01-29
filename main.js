@@ -45,9 +45,15 @@ function init() {
 
 function unInit() {
   clearCards();
+  removeClickHandlers();
+}
+
+function removeClickHandlers() {
   removeCardClickHandlers();
   removeResetHandler();
-  removeSettingsClickHandler()
+  removeSettingsClickHandler();
+  removeLegendClickHandlers();
+  removeFormulasClickHandlers();
 }
 
 function showTargetElement() {
@@ -80,7 +86,9 @@ function addIntroClickHandler() {
 
 function addSettingsClickHandler() {
   $('.settings').click(() => {
-    showModal(true);
+    $('.legend-modal').hide();
+    $('.history-modal').hide();
+    $('.settings-modal').toggle();
   });
 
   // toggles card facing
@@ -97,8 +105,8 @@ function addSettingsClickHandler() {
   })
 
   $('.exit-settings').click(() => {
-    delayedHideModal(1, $('.settings-modal'));
-  })
+    $('.settings-modal').hide();
+  });
 }
 
 function removeSettingsClickHandler() {
@@ -385,6 +393,8 @@ function initialLegend() {
 
 function addLegendClickHandlers() {
   $('.open-legend-modal').click(() => {
+    $('.settings-modal').hide();
+    $('.history-modal').hide();
     $('.legend-modal').toggle();
   });
 
@@ -393,14 +403,27 @@ function addLegendClickHandlers() {
   });
 }
 
+function removeLegendClickHandlers() {
+  $('.open-legend-modal').off('click');
+  $('.exit-legend-modal').off('click');
+}
+
+
 function addFormulasClickHandlers() {
   $('.open-history-modal').click(() => {
+    $('.settings-modal').hide();
+    $('.legend-modal').hide();
     $('.history-modal').toggle();
   });
 
   $('.exit-history-modal').click(() => {
     $('.history-modal').hide();
   });
+}
+
+function removeFormulasClickHandlers() {
+  $('.open-history-modal').off('click');
+  $('.exit-history-modal').off('click');
 }
 
 function insertHistory(element1, element2, newElement) {
@@ -420,6 +443,11 @@ function insertHistory(element1, element2, newElement) {
 
 /*
 TODO:
+clear legend and history on new game
+target element on click
+mobile landscape responsive
+
+BLUE SKY:
 settings - difficulty
 object constructor at beginning to determine game difficulty
 */
