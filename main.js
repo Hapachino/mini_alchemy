@@ -34,8 +34,10 @@ function init() {
 
   addClickHandlers();
 
+  console.log($('.intro-modal').css)
   // first game target modal is shown and click handlers added after intro modal is closed
   if ($('.intro-modal').css('display') === 'none') {
+    console.log('non');
     showTargetElement();
   }
 

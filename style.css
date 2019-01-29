@@ -254,25 +254,6 @@ main {
   transform: translate(-50%, -50%);
 }
 
-/* .target-modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  height: 21vw;
-  width: 15vw;
-  background: var(--card-front-background);
-  border: var(--modal-border);
-  border-radius: var(--border-radius);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  transition: transform 1s ease;
-  transform-origin: top left;
-  box-shadow: var(--modal-shadow);
-  transform: translate(-50%, -50%);
-} */
-
 .settings-modal {
   display: none;
   text-align: center;
@@ -510,7 +491,9 @@ main {
 	animation: wobble 0.8s ease-out;
 }
 
-@media screen and (max-width: 667px) {
+@media screen 
+and (max-width: 667px)
+and (orientation:portrait) {
   body {
     height: 100vh;
   }
@@ -892,5 +875,82 @@ and (device-width: 1366px) {
 
   .history-modal-container {
     grid-template-columns: repeat(4, 250px);
+  }
+}
+
+@media screen 
+and (max-width: 823px)
+and (orientation:landscape) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .icons {
+    width: 7rem;
+    top: 2rem;
+    right: 2rem;
+  }
+
+  .fa-2x {
+    font-size: 1.5rem;
+  }
+
+  .intro-modal {
+    z-index: 3;
+  }
+
+  .info-modal {
+    height: 90vh;
+    width: 40vw;
+  }
+
+  .info-modal-image {
+    width: 25vw;
+    height: 45vw;
+    margin: 1rem 0;
+  }
+
+  .info-modal-info {
+    font-size: calc(var(--modal-info-font-size) * 3);
+    height: 5vw;
+  }
+
+  .info-modal-text {
+    height: 30vw;
+    font-size: calc(var(--modal-info-font-size) * 4);
+  }
+
+  .intro-modal {
+    height: 90vh;
+    width: 120vh;
+    padding: 2rem;
+  }
+
+  .intro-modal > p {
+    font-size: 2.3rem;
+  }
+
+  .settings-modal {
+    padding: 1rem;
+  }
+
+  button.exit-intro {
+    font-size: 2rem;
+  }
+
+  .exit-settings {
+    margin-top: 0.5rem;
+  }
+
+  .legend-modal-elements-container {
+    grid-template-columns: repeat(2, 225px);
+  }
+
+  .history-modal-container {
+    grid-template-columns: repeat(2, 250px);
+  }
+
+  .settings-modal {
+    width: 20rem;
   }
 }
