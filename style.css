@@ -5,7 +5,7 @@
   --main-width: 85%;
   --border-radius: 1rem;
   /* font size */
-  --h1-font-size: 5vw;
+  --h1-font-size: 8rem;
   --modal-info-font-size: 1.5vw;
   --modal-text-font-size: 3vw;
   --aside-font-size: 2vw;
@@ -90,8 +90,8 @@ header a:hover {
 
 .icons {
   position: absolute;
-  top: 2vw;
-  right: 2vw;
+  top: 4.5rem;
+  right: 4.5rem;
   width: 20rem;
   display: flex;
   flex-direction: row;
@@ -508,7 +508,9 @@ main {
   }
 
   .icons {
-    width: 7rem;
+    width: 9rem;
+    top: 2rem;
+    right: 1.5rem;
   }
 
   .fa-2x {
@@ -667,6 +669,15 @@ and (device-height : 1024px)  {
   .new-game {
     display: none;
   }
+
+  .icons {
+    width: 10rem;
+    right: 10rem;
+  }
+
+  .icons * {
+    margin: 0 0.5rem;
+  }
 }
 
 @media only screen 
@@ -708,6 +719,16 @@ and (device-height : 1366px) {
 
   .new-game {
     display: none;
+  }
+
+  .icons {
+    top: 7.5rem;
+    width: 10rem;
+    right: 12.5rem;
+  }
+
+  .icons * {
+    margin: 0 0.5rem;
   }
 }
 
