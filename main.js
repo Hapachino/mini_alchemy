@@ -188,7 +188,7 @@ function cardClicked() {
 
     const firstElement = gameState.firstCardClicked.attr('name');
     const secondElement = gameState.secondCardClicked.attr('name');
-    insertFormula(firstElement, secondElement, newElement);
+    insertHistory(firstElement, secondElement, newElement);
 
     const totalCards = $('.card').length === config.totalCards;
     const gameWon = newElement === gameState.targetElement;
@@ -403,7 +403,7 @@ function addFormulasClickHandlers() {
   });
 }
 
-function insertFormula(element1, element2, newElement) {
+function insertHistory(element1, element2, newElement) {
   const formulaEntry = $('<div>').addClass('history-entry');
   const image1 = $('<div>').addClass('history-image').css('background-image', `url(images/elements/${element1}.svg)`);
   const image2 = $('<div>').addClass('history-image').css('background-image', `url(images/elements/${element2}.svg)`);
