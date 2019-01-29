@@ -46,6 +46,8 @@ function init() {
 function unInit() {
   clearCards();
   removeClickHandlers();
+  clearHistory();
+  clearLegend();
 }
 
 function removeClickHandlers() {
@@ -53,7 +55,7 @@ function removeClickHandlers() {
   removeResetHandler();
   removeSettingsClickHandler();
   removeLegendClickHandlers();
-  removeFormulasClickHandlers();
+  removeHistoryClickHandlers();
 }
 
 function showTargetElement() {
@@ -69,7 +71,7 @@ function addClickHandlers() {
   addResetHandler();
   addLegendClickHandlers();
   addIntroClickHandler();
-  addFormulasClickHandlers();
+  addHistoryClickHandlers();
 }
 
 function clearCards() {
@@ -409,7 +411,7 @@ function removeLegendClickHandlers() {
 }
 
 
-function addFormulasClickHandlers() {
+function addHistoryClickHandlers() {
   $('.open-history-modal').click(() => {
     $('.settings-modal').hide();
     $('.legend-modal').hide();
@@ -421,7 +423,7 @@ function addFormulasClickHandlers() {
   });
 }
 
-function removeFormulasClickHandlers() {
+function removeHistoryClickHandlers() {
   $('.open-history-modal').off('click');
   $('.exit-history-modal').off('click');
 }
@@ -441,9 +443,16 @@ function insertHistory(element1, element2, newElement) {
   $('.history-modal-container').append(formulaEntry);
 }
 
+function clearLegend() {
+  $('.legend-modal-elements-container').empty();
+}
+
+function clearHistory() {
+  $('.history-modal-container').empty();
+}
+
 /*
 TODO:
-clear legend and history on new game
 target element on click
 mobile landscape responsive
 
