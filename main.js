@@ -420,9 +420,6 @@ function insertHistory(element1, element2, newElement) {
 
 /*
 TODO:
-exit hover
-history mobile responsive
-legend mobile responsive
 settings - difficulty
 object constructor at beginning to determine game difficulty
 */

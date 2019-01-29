@@ -345,6 +345,10 @@ main {
   top: 1rem;
 }
 
+.exit-history-modal:hover {
+  color: purple;
+}
+
 .legend-modal-elements-container {
   display: grid;
   grid-template-columns: repeat(4, 250px);
@@ -501,24 +505,51 @@ main {
   }
 
   .info-modal {
-    height: 60vw;
-    width: 40vw;
+    height: 70vw;
+    width: 50vw;
   }
 
   .info-modal-image {
-    width: 30vw;
-    height: 45vw;
-    margin-bottom: 3vw;
+    width: 40vw;
+    height: 75vw;
+    margin: 1rem 0;
   }
 
   .info-modal-info {
-    font-size: calc(var(--modal-info-font-size) * 3);
+    font-size: calc(var(--modal-info-font-size) * 4);
     height: 5vw;
   }
 
   .info-modal-text {
     height: 30vw;
-    font-size: calc(var(--modal-info-font-size) * 5);
+    font-size: calc(var(--modal-info-font-size) * 6);
+  }
+
+  .legend-modal-elements-container {
+    grid-template-columns: repeat(1, 125px);
+  }
+
+  .legend-entry {
+    margin: 0.5rem;
+  }
+
+  .legend-image {
+    height: 4rem;
+    width: 4rem;
+    margin-right: 1rem;
+  }
+
+  .legend-info {
+    display: inline-block;
+    font-size: 2rem;
+  }
+
+  .history-modal-container {
+    grid-template-columns: repeat(1, 250px);
+  }
+
+  .history-entry {
+    margin: 0rem;
   }
 
   header {
@@ -715,6 +746,27 @@ and (device-height : 1024px)  {
 
   .history-modal-container {
     grid-template-columns: repeat(2, 300px);
+  }
+
+  .info-modal {
+    height: 45vw;
+    width: 30vw;
+  }
+
+  .info-modal-image {
+    width: 25vw;
+    height: 70vw;
+    margin: 1.5rem 0;
+  }
+
+  .info-modal-info {
+    font-size: calc(var(--modal-info-font-size) * 2);
+    height: 5vw;
+  }
+
+  .info-modal-text {
+    height: 30vw;
+    font-size: calc(var(--modal-info-font-size) * 4);
   }
 }
 
