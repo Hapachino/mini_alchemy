@@ -182,11 +182,13 @@ function init() {
   addClickHandlers();
 
   // first game target modal is shown after intro modal is closed
-  if ($('.intro-modal').css('display') === 'none') {
-    showTargetElement();
-  }
+  // if ($('.intro-modal').css('display') === 'none') {
+  //   showTargetElement();
+  // }
 
   fixStats();
+  insertLegend('galaxy-cluster');
+  insertLegend('water');
 }
 
 function unInit() {
@@ -439,14 +441,14 @@ function shuffle(array) {
 }
 
 function updateModal(element, info) {
-  $('.modal-image').css('background-image', `url(images/elements/${element}.svg)`);
-  $('.modal-info').text(info);
-  $('.modal-text').text(element.replace(/-/g, ' '));
+  $('.info-modal-image').css('background-image', `url(images/elements/${element}.svg)`);
+  $('.info-modal-info').text(info);
+  $('.info-modal-text').text(element.replace(/-/g, ' '));
 }
 
 function delayedHideModal(ms, isSettings) {
   const delay = ms || config.hideModalDelay;
-  const modal = isSettings ? $('.settings-modal') : $('.modal'); 
+  const modal = isSettings ? $('.settings-modal') : $('.info-modal'); 
 
   setTimeout(() => {
     modalVisibility(modal, false);
@@ -457,7 +459,7 @@ function delayedHideModal(ms, isSettings) {
 function showModal(isSettings) {
   removeCardClickHandlers();
   
-  const modal = !isSettings ? $('.modal') : $('.settings-modal');
+  const modal = !isSettings ? $('.info-modal') : $('.settings-modal');
 
   // reset animation
   modal.removeClass('run-show-modal');
@@ -504,6 +506,15 @@ function fixStats() {
   screen.scroll(() => {
     aside.toggleClass("fix-scroll", screen.scrollTop() > 66);
   });
+}
+
+function insertLegend(element) {
+  const legendEntry = $('<div>').addClass('legend-entry');
+  const image = $('<div>').addClass('legend-image').css('background-image', `url(images/elements/${element}.svg)`);
+  const info = $('<div>').addClass('legend-info').text(element.replace(/-/g, ' '));
+
+  legendEntry.append(image).append(info);
+  $('.legend-modal').append(legendEntry);
 }
 
 /*
