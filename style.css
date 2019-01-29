@@ -249,6 +249,7 @@ main {
   box-shadow: var(--modal-shadow);
   transform: translate(-50%, -50%) scale(0.1);
   opacity: 0;
+  transform: translate(-50%, -50%);
 }
 
 .settings-modal {
@@ -499,6 +500,27 @@ main {
     z-index: 3;
   }
 
+  .info-modal {
+    height: 60vw;
+    width: 40vw;
+  }
+
+  .info-modal-image {
+    width: 30vw;
+    height: 45vw;
+    margin-bottom: 3vw;
+  }
+
+  .info-modal-info {
+    font-size: calc(var(--modal-info-font-size) * 3);
+    height: 5vw;
+  }
+
+  .info-modal-text {
+    height: 30vw;
+    font-size: calc(var(--modal-info-font-size) * 5);
+  }
+
   header {
     height: var(--mobile-header-height);
   }
@@ -508,13 +530,13 @@ main {
   }
 
   .icons {
-    width: 9rem;
+    width: 7rem;
     top: 2rem;
-    right: 1.5rem;
+    right: 2rem;
   }
 
   .fa-2x {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   main {
