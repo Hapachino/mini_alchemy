@@ -473,9 +473,6 @@ function removeTargetClickHandler() {
 }
 
 /*
-TODO:
-mobile landscape responsive
-
 BLUE SKY:
 settings - difficulty
 object constructor at beginning to determine game difficulty
