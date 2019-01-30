@@ -254,6 +254,24 @@ main {
   transform: translate(-50%, -50%);
 }
 
+.target-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 21vw;
+  width: 15vw;
+  background: var(--card-front-background);
+  border: var(--modal-border);
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  box-shadow: var(--modal-shadow);
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
 .settings-modal {
   display: none;
   text-align: center;
@@ -394,7 +412,7 @@ main {
   width: 15rem;
 }
 
-.info-modal-image {
+.target-modal-image, .info-modal-image {
   width: 10vw;
   height: 10vw;
   margin: 2vw;
@@ -402,12 +420,13 @@ main {
   background-repeat: no-repeat;
 }
 
-.info-modal-info {
+.target-modal-info, .info-modal-info {
   font-size: var(--modal-info-font-size);
   height: 1vw;
+  text-align: center;
 }
 
-.info-modal-text {
+.target-modal-text, .info-modal-text {
   height: 5vw;
   width: 100%;
   text-align: center;
