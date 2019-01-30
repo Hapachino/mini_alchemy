@@ -418,6 +418,7 @@ main {
   margin: 2vw;
   background-size: cover;
   background-repeat: no-repeat;
+  margin: 0 auto;
 }
 
 .target-modal-info, .info-modal-info {
@@ -521,7 +522,7 @@ and (orientation:portrait) {
     z-index: 3;
   }
 
-  .info-modal {
+  .target-modal, .info-modal {
     height: 70vw;
     width: 50vw;
   }
@@ -532,12 +533,18 @@ and (orientation:portrait) {
     margin: 1rem 0;
   }
 
-  .info-modal-info {
+  .target-modal-image {
+    width: 36vw;
+    height: 36vw;
+    margin: 1.5rem auto;
+  }
+
+  .target-modal-info, .info-modal-info {
     font-size: calc(var(--modal-info-font-size) * 4);
     height: 5vw;
   }
 
-  .info-modal-text {
+  .target-modal-text, .info-modal-text {
     height: 30vw;
     font-size: calc(var(--modal-info-font-size) * 6);
   }
@@ -764,7 +771,7 @@ and (device-height : 1024px)  {
     grid-template-columns: repeat(2, 300px);
   }
 
-  .info-modal {
+  .target-modal, .info-modal {
     height: 45vw;
     width: 30vw;
   }
@@ -775,12 +782,18 @@ and (device-height : 1024px)  {
     margin: 1.5rem 0;
   }
 
-  .info-modal-info {
+  .target-modal-image {
+    width: 22vw;
+    height: 22vw;
+    margin: 1.5rem auto;
+  }
+
+  .target-modal-info, .info-modal-info {
     font-size: calc(var(--modal-info-font-size) * 2);
     height: 5vw;
   }
 
-  .info-modal-text {
+  .target-modal-text, .info-modal-text {
     height: 30vw;
     font-size: calc(var(--modal-info-font-size) * 4);
   }
@@ -789,7 +802,7 @@ and (device-height : 1024px)  {
 @media only screen 
 and (device-width : 1024px) 
 and (device-height : 1366px) { 
-    main {
+  main {
     width: 100%;
     height: 70vh;
     grid-template-columns: repeat(6, 1fr);
@@ -918,23 +931,29 @@ and (orientation:landscape) {
     z-index: 3;
   }
 
-  .info-modal {
+  .target-modal, .info-modal {
     height: 90vh;
     width: 40vw;
   }
 
   .info-modal-image {
     width: 25vw;
-    height: 45vw;
+    height: 65vw;
     margin: 1rem 0;
   }
 
-  .info-modal-info {
+  .target-modal-image {
+    width: 26vw;
+    height: 26vw;
+    margin: 1.5rem auto;
+  }
+
+  .target-modal-info, .info-modal-info {
     font-size: calc(var(--modal-info-font-size) * 3);
     height: 5vw;
   }
 
-  .info-modal-text {
+  .target-modal-text, .info-modal-text {
     height: 30vw;
     font-size: calc(var(--modal-info-font-size) * 4);
   }
