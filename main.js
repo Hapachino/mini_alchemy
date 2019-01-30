@@ -34,10 +34,8 @@ function init() {
 
   addClickHandlers();
 
-  console.log($('.intro-modal').css)
   // first game target modal is shown and click handlers added after intro modal is closed
   if ($('.intro-modal').css('display') === 'none') {
-    console.log('non');
     showTargetElement();
   }
 
@@ -94,6 +92,7 @@ function addSettingsClickHandler() {
   $('.settings').click(() => {
     $('.legend-modal').hide();
     $('.history-modal').hide();
+    $('.target-modal').hide();
     $('.settings-modal').toggle();
   });
 
@@ -314,10 +313,12 @@ function shuffle(array) {
   return shuffled;
 }
 
-function updateModal(element, info) {
-  $('.info-modal-image').css('background-image', `url(images/elements/${element}.svg)`);
-  $('.info-modal-info').text(info);
-  $('.info-modal-text').text(element.replace(/-/g, ' '));
+function updateModal(element, info, isTarget) {
+  const prefix = isTarget ? '.target' : '.info';
+  
+  $(`${prefix}-modal-image`).css('background-image', `url(images/elements/${element}.svg)`);
+  $(`${prefix}-modal-info`).text(info);
+  $(`${prefix}-modal-text`).text(element.replace(/-/g, ' '));
 }
 
 function delayedHideModal(ms, isSettings) {
@@ -401,6 +402,7 @@ function addLegendClickHandlers() {
   $('.open-legend-modal').click(() => {
     $('.settings-modal').hide();
     $('.history-modal').hide();
+    $('.target-modal').hide();
     $('.legend-modal').toggle();
   });
 
@@ -419,6 +421,7 @@ function addHistoryClickHandlers() {
   $('.open-history-modal').click(() => {
     $('.settings-modal').hide();
     $('.legend-modal').hide();
+    $('.target-modal').hide();
     $('.history-modal').toggle();
   });
 
@@ -457,9 +460,11 @@ function clearHistory() {
 
 function addTargetClickHandler() {
   $('.target').click(() => {
-    updateModal(gameState.targetElement, 'you must create:');
-    showModal();
-    delayedHideModal(2500);
+    updateModal(gameState.targetElement, 'you must create:', true);
+    $('.settings-modal').hide();
+    $('.legend-modal').hide();
+    $('.history-modal').hide();
+    $('.target-modal').toggle();
   })
 }
 
