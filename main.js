@@ -2,7 +2,7 @@ $(document).ready(init);
 
 const config = {
   startingCards: ['air', 'earth', 'fire', 'water'],
-  // startingCards: Array(36), // for layout testing purposes
+  startingCards: Array(25), // for layout testing purposes
   totalCards: 9 * 4,
   hideCardDelay: 1750,
   hideCardDelayToggle: 1250,
@@ -379,7 +379,7 @@ function fixStats() {
   const screen = $(window);
   
   screen.scroll(() => {
-    aside.toggleClass("fix-scroll", screen.scrollTop() > 66);
+    aside.toggleClass("sticky", screen.scrollTop() > 66);
   });
 }
 
@@ -436,6 +436,10 @@ function removeHistoryClickHandlers() {
 }
 
 function insertHistory(element1, element2, newElement) {
+  const historyMessage = $('.history-message');
+
+  if (historyMessage.length) historyMessage.remove();
+
   const formulaEntry = $('<div>').addClass('history-entry');
   const image1 = $('<div>').addClass('history-image').css('background-image', `url(images/elements/${element1}.svg)`);
   const image2 = $('<div>').addClass('history-image').css('background-image', `url(images/elements/${element2}.svg)`);
@@ -468,7 +472,7 @@ function addTargetClickHandler() {
   })
 }
 
-function removeTargetClickHandler() {
+function removeTargetClickHandlers() {
   $('.target').off('click');
 }
 
