@@ -333,6 +333,13 @@ main {
   grid-template-columns: repeat(4, 250px);
 }
 
+.history-message {
+  display: block;
+  width: 25rem;
+  font-size: 4rem;
+  margin: 0 auto;
+}
+
 .history-entry {
   margin: 1rem;
   display: flex;
@@ -415,7 +422,7 @@ main {
   width: 11vw;
   height: 11vw;
   margin: 2vw;
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   margin: 0 auto;
 }
@@ -583,10 +590,6 @@ and (orientation:portrait) {
     margin: 0rem;
   }
 
-  header {
-    height: var(--mobile-header-height);
-  }
-
   h1 {
     font-size: var(--mobile-h1-font-size);
   }
@@ -621,13 +624,14 @@ and (orientation:portrait) {
     padding: .5vw;
     z-index: 2;
     transition: 0.2s ease-in;
+    position: -webkit-sticky; 
+    position: sticky;
+    top: 0;
   }
 
-  .fix-scroll {
+  .sticky {
     background-color: #aaaaaa;
     box-shadow: 9px 9px 25px 0px rgba(0,0,0,0.75);
-    position: fixed;
-    top: 0;
   }
 
   aside * {
@@ -939,19 +943,19 @@ and (orientation:landscape) {
   }
 
   .target-modal, .info-modal {
-    height: 90vh;
-    width: 40vw;
+    height: 70vh;
+    width: 30vw;
   }
 
   .info-modal-image {
-    width: 25vw;
-    height: 65vw;
+    width: 20vw;
+    height: 70vw;
     margin: 1rem 0;
   }
 
   .target-modal-image {
-    width: 26vw;
-    height: 26vw;
+    width: 20vw;
+    height: 20vw;
     margin: 1.5rem auto;
   }
 
