@@ -33,10 +33,10 @@ function init() {
   newGameWobbleOnEnter();
 
   addClickHandlers();
-  console.log($('.intro-modal').css('display'))
+  
   // first game target modal is shown and click handlers added after intro modal is closed
   if ($('.intro-modal').css('display') === 'none') {
-    // showTargetElement();
+    showTargetElement();
   }
 
   fixStats();
