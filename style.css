@@ -255,7 +255,9 @@ main {
   transition: transform 1s ease;
   transform-origin: top left;
   box-shadow: var(--modal-shadow);
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(0.1);
+  opacity: 0;
+  z-index: 3;
 }
 
 .target-modal {
@@ -273,6 +275,7 @@ main {
   box-shadow: var(--modal-shadow);
   transform: translate(-50%, -50%);
   display: none;
+  z-index: 3;
 }
 
 .settings-modal {
@@ -288,6 +291,7 @@ main {
   padding: 2rem;
   border: 3px solid black;
   border-radius: var(--border-radius);
+  z-index: 3;
 }
 
 .exit-settings {
@@ -304,6 +308,7 @@ main {
   padding: 2rem;
   border: 3px solid black;
   border-radius: var(--border-radius);
+  z-index: 3;
 }
 
 .legend-modal {
@@ -316,6 +321,7 @@ main {
   border: 3px solid black;
   border-radius: var(--border-radius);
   display: none;
+  z-index: 3;
 }
 
 .history-modal {
@@ -330,6 +336,7 @@ main {
   transition: transform 1s ease;
   transform-origin: top left;
   display: none;
+  z-index: 3;
 }
 
 .history-modal-container {
