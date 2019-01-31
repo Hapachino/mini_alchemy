@@ -2,7 +2,7 @@ $(document).ready(init);
 
 const config = {
   startingCards: ['air', 'earth', 'fire', 'water'],
-  startingCards: Array(25), // for layout testing purposes
+  // startingCards: Array(36), // for layout testing purposes
   totalCards: 9 * 4,
   hideCardDelay: 1750,
   hideCardDelayToggle: 1250,
