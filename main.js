@@ -41,6 +41,7 @@ function init() {
 
   fixStats();
   initialLegend();
+  addNoHistoryMessage();
 }
 
 function unInit() {
@@ -435,10 +436,14 @@ function removeHistoryClickHandlers() {
   $('.exit-history-modal').off('click');
 }
 
+function addNoHistoryMessage() {
+  $('.history-message').text('No existing history.');
+}
+
 function insertHistory(element1, element2, newElement) {
   const historyMessage = $('.history-message');
 
-  if (historyMessage.length) historyMessage.remove();
+  if (historyMessage.length) historyMessage.empty();
 
   const formulaEntry = $('<div>').addClass('history-entry');
   const image1 = $('<div>').addClass('history-image').css('background-image', `url(images/elements/${element1}.svg)`);
