@@ -285,8 +285,6 @@ main {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 10vw;
-  width: 15vw;
   background: var(--card-front-background);
   padding: 2rem;
   border: 3px solid black;
@@ -537,6 +535,94 @@ main {
 }
 
 @media screen 
+and (max-width: 823px) {
+  .icons {
+    width: 15rem;
+    top: 5rem;
+    right: 3rem;
+  }
+}
+
+@media screen 
+and (max-width: 823px)
+and (orientation:landscape) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .icons {
+    width: 7rem;
+    top: 2rem;
+    right: 2rem;
+  }
+
+  .fa-2x {
+    font-size: 1.5rem;
+  }
+
+  .intro-modal {
+    z-index: 3;
+  }
+
+  .target-modal, .info-modal {
+    height: 70vh;
+    width: 30vw;
+  }
+
+  .info-modal-image {
+    width: 20vw;
+    height: 70vw;
+    margin: 1rem 0;
+  }
+
+  .target-modal-image {
+    width: 20vw;
+    height: 16vw;
+    margin: 1.5rem auto;
+  }
+
+  .target-modal-info, .info-modal-info {
+    font-size: calc(var(--modal-info-font-size) * 3);
+    height: 5vw;
+  }
+
+  .target-modal-text, .info-modal-text {
+    height: 30vw;
+    font-size: calc(var(--modal-info-font-size) * 4);
+  }
+
+  .intro-modal {
+    height: 90vh;
+    width: 120vh;
+    padding: 2rem;
+  }
+
+  .intro-modal > p {
+    font-size: 2.3rem;
+  }
+
+  .settings-modal {
+    padding: 1rem;
+  }
+
+  button.exit-intro {
+    font-size: 2rem;
+  }
+
+  .exit-settings {
+    margin-top: 0.5rem;
+  }
+
+  .legend-modal-elements-container {
+    grid-template-columns: repeat(2, 225px);
+  }
+
+  .history-modal-container {
+    grid-template-columns: repeat(2, 250px);
+  }
+}
+
+@media screen 
 and (max-width: 667px)
 and (orientation:portrait) {
   .intro-modal {
@@ -695,8 +781,6 @@ and (orientation:portrait) {
   }
 
   .settings-modal {
-    height: var(--mobile-settings-modal-height);
-    width: var(--mobile-settings-modal-width);
     padding: 1vw;
   }
 
@@ -939,88 +1023,5 @@ and (device-width: 1366px) {
 
   .history-modal-container {
     grid-template-columns: repeat(4, 250px);
-  }
-}
-
-@media screen 
-and (max-width: 823px)
-and (orientation:landscape) {
-  h1 {
-    font-size: 2rem;
-  }
-
-  .icons {
-    width: 7rem;
-    top: 2rem;
-    right: 2rem;
-  }
-
-  .fa-2x {
-    font-size: 1.5rem;
-  }
-
-  .intro-modal {
-    z-index: 3;
-  }
-
-  .target-modal, .info-modal {
-    height: 70vh;
-    width: 30vw;
-  }
-
-  .info-modal-image {
-    width: 20vw;
-    height: 70vw;
-    margin: 1rem 0;
-  }
-
-  .target-modal-image {
-    width: 20vw;
-    height: 20vw;
-    margin: 1.5rem auto;
-  }
-
-  .target-modal-info, .info-modal-info {
-    font-size: calc(var(--modal-info-font-size) * 3);
-    height: 5vw;
-  }
-
-  .target-modal-text, .info-modal-text {
-    height: 30vw;
-    font-size: calc(var(--modal-info-font-size) * 4);
-  }
-
-  .intro-modal {
-    height: 90vh;
-    width: 120vh;
-    padding: 2rem;
-  }
-
-  .intro-modal > p {
-    font-size: 2.3rem;
-  }
-
-  .settings-modal {
-    padding: 1rem;
-  }
-
-  button.exit-intro {
-    font-size: 2rem;
-  }
-
-  .exit-settings {
-    margin-top: 0.5rem;
-  }
-
-  .legend-modal-elements-container {
-    grid-template-columns: repeat(2, 225px);
-  }
-
-  .history-modal-container {
-    grid-template-columns: repeat(2, 250px);
-  }
-
-  .settings-modal {
-    width: 20rem;
   }
 }
